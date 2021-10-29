@@ -13,6 +13,7 @@ try:
     import getmac
     import string
     import colorama
+    from consts import API_USE
 
 except:
     raise Exception
@@ -27,11 +28,11 @@ def getSize(bytes , default = "B"):
 
 
 class Tools:
-    def __init__(self):
-        builtins.super(Tools , self).__init__()
+    def __init__(self , *args , **kwargs):
+        builtins.super(Tools , self).__init__(*args , **kwargs)
         self.listDrives = []
         self.localIP = builtins.str(socket.gethostbyname(socket.gethostname()))
-        self.publicIPLoader = requests.get("https://api.myip.com").content
+        self.publicIPLoader = requests.get(API_USE).content
         self.loadedIP = json.loads(self.publicIPLoader)
         self.publicIP = builtins.str(self.loadedIP['ip'])
         self.osName = builtins.str(platform.system())
