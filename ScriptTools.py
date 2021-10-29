@@ -13,7 +13,7 @@ try:
     import getmac
     import string
     import colorama
-    from consts import API_USE
+    from consts import (API_USE , AF_INET , AF_PACKET)
 
 except:
     raise Exception
@@ -51,12 +51,16 @@ class Tools:
         self.drivesInfo = psutil.disk_partitions()
         self.pythonVer = sys.version[0:6]
         self.cpuType = platform.uname().processor
+        self.nodeName = platform.uname().node
+        self.sysRelease = platform.uname().release
+        self.sysVersion = platform.uname().version
         self.bootTime = datetime.datetime.fromtimestamp(psutil.boot_time())
         self.phCores = psutil.cpu_count(logical = False)
         self.totCores = psutil.cpu_count(logical = True)
         self.cpuFreq = psutil.cpu_freq()
         self.ramVir = psutil.virtual_memory()
         self.swapMemo = psutil.swap_memory()
+        self.ipAddrs =  psutil.net_if_addrs()
 
     def ShowLocalIP(self) -> builtins.str:
         builtins.print(self.localIP)
@@ -73,6 +77,15 @@ class Tools:
     def ShowOsType(self) -> builtins.str:
         builtins.print(self.osType)
 
+    def ShowNodeName(self) -> builtins.str:
+        builtins.print(self.nodeName)
+
+    def ShowOSRelease(self) -> builtins.str:
+        builtins.print(self.sysRelease)
+
+    def ShowOSVersion(self) -> builtins.str:
+        builtins.print(self.sysVersion)
+
     def ShowSystemName(self) -> builtins.str:
         builtins.print(self.systemName)
 
@@ -84,11 +97,13 @@ class Tools:
 
     def ShowSystemInformation(self) -> builtins.str:
         builtins.print(
-            f"OS Name : {self.osName}\n" ,
-            f"OS Type : {self.osType}\n" ,
-            f"System Name : {self.systemName}\n" ,
-            f"System Uptime : {self.uptimeSystem}\n" ,
-            f"User : {self.userName}\n"
+            f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.WHITE}{self.osName}\n" ,
+            f"{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{self.osType}\n" ,
+            f"{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{self.sysRelease}\n" ,
+            f"{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{self.sysVersion}\n" ,
+            f"{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{self.systemName or self.nodeName}\n" ,
+            f"{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{self.uptimeSystem}\n" ,
+            f"{colorama.ansi.Fore.GREEN}User : {colorama.ansi.Fore.WHITE}{self.userName}\n"
         )
 
     def ShowPythonVersion(self) -> builtins.str:
@@ -198,7 +213,7 @@ class Tools:
     def ShowSwapPercentage(self) -> builtins.float:
         builtins.print(f"{getSize(self.swapMemo.percent)}%")
 
-    def ShowDiskInfo(self):
+    def ShowDiskInfo(self) -> builtins.str:
         for partition in self.drivesInfo:
             builtins.print(f"{colorama.ansi.Fore.GREEN}=== Device : {partition.device} ===")
             builtins.print(f"{colorama.ansi.Fore.WHITE}Mountpoint : {colorama.ansi.Fore.MAGENTA}{partition.mountpoint}{colorama.ansi.Fore.WHITE}")
@@ -211,3 +226,16 @@ class Tools:
             builtins.print(f"Used : {getSize(partitionUsage.used)}")
             builtins.print(f"Free : {getSize(partitionUsage.free)}")
             builtins.print(f"Percentage : {getSize(partitionUsage.percent)}\n")
+
+    def ShowNetworkInfo(self) -> builtins.str:
+        for interfaceName , interfaceAddresses in self.ipAddrs.items():
+            for address in interfaceAddresses:
+                builtins.print(f"{colorama.ansi.Fore.GREEN}=== Interface :{colorama.ansi.Fore.MAGENTA} {interfaceName} {colorama.ansi.Fore.GREEN}===")
+                if builtins.str(address.family) == AF_INET:
+                    builtins.print(f"{colorama.ansi.Fore.WHITE}IP Address : {address.address}")
+                    builtins.print(f"Netmask : {address.netmask}")
+                    builtins.print(f"Broadcast IP : {address.broadcast}")
+                elif builtins.str(address.family) == AF_PACKET:
+                    builtins.print(f"Mac Address : {address.address}")
+                    builtins.print(f"Netmask : {address.netmask}")
+                    builtins.print(f"Broadcast MAC : {address.broadcast}")
