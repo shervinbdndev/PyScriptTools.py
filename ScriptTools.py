@@ -75,7 +75,10 @@ class Tools:
         builtins.print(self.publicIP)
 
     def ShowMacAddress(self) -> builtins.str:
-        builtins.print(getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = True))
+        try:
+            builtins.print(getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = True))
+        except ConnectionError:
+            pass
 
     def ShowOsName(self) -> builtins.str:
         builtins.print(self.osName)
