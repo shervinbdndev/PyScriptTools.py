@@ -72,7 +72,10 @@ class Tools:
         builtins.print(self.localIP)
 
     def ShowPublicIP(self) -> builtins.str:
-        builtins.print(self.publicIP)
+        try:
+            builtins.print(self.publicIP)
+        except ConnectionError:
+            pass
 
     def ShowMacAddress(self) -> builtins.str:
         try:
