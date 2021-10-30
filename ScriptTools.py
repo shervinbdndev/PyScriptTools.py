@@ -13,7 +13,13 @@ try:
     import getmac
     import string
     import colorama
-    from consts import (API_USE , AF_INET , AF_PACKET)
+    from consts import (
+        API_USE ,
+        AF_INET ,
+        AF_PACKET ,
+        WINDOWS ,
+        LINUX
+    )
 
 except:
     raise Exception
@@ -96,15 +102,26 @@ class Tools:
         builtins.print(self.userName)
 
     def ShowSystemInformation(self) -> builtins.str:
-        builtins.print(
-            f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.WHITE}{self.osName}\n" ,
-            f"{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{self.osType}\n" ,
-            f"{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{self.sysRelease}\n" ,
-            f"{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{self.sysVersion}\n" ,
-            f"{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{self.systemName or self.nodeName}\n" ,
-            f"{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{self.uptimeSystem}\n" ,
-            f"{colorama.ansi.Fore.GREEN}User : {colorama.ansi.Fore.WHITE}{self.userName}\n"
-        )
+        if platform.system() == WINDOWS:
+            builtins.print(
+                f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.BLUE}{self.osName}" ,
+                f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{self.osType}" ,
+                f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{self.sysRelease}" ,
+                f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{self.sysVersion}" ,
+                f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{self.systemName or self.nodeName}" ,
+                f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{self.uptimeSystem}" ,
+                f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{self.userName}"
+            )
+        elif platform.system() == LINUX:
+            builtins.print(
+                f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.YELLOW}{self.osName}" ,
+                f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{self.osType}" ,
+                f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{self.sysRelease}" ,
+                f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{self.sysVersion}" ,
+                f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{self.systemName or self.nodeName}" ,
+                f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{self.uptimeSystem}" ,
+                f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{self.userName}"
+            )
 
     def ShowPythonVersion(self) -> builtins.str:
         builtins.print(self.pythonVer)

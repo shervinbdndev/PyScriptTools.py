@@ -3,6 +3,8 @@ __version__ = "2.0.2"
 __author__ = "Shervin Badanara (shervin-glitch)"
 
 # Consts
+WINDOWS = "Windows"
+LINUX = "Linux"
 API_USE = "https://api.myip.com"
 AF_INET = "AddressFamily.AF_INET"
 AF_PACKET = "AddressFamily.AF_PACKET"
