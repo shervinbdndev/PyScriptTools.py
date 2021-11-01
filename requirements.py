@@ -31,4 +31,5 @@ if __name__ == "__main__":
     DependencyUpdator().LibraryInstaller("GPUtil")
     DependencyUpdator().LibraryInstaller("psutil")
     DependencyUpdator().LibraryInstaller("getmac")
+    DependencyUpdator().LibraryInstaller("python-cfonts")
     DependencyUpdator().LibraryInstaller("colorama")

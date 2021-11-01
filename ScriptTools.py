@@ -1,4 +1,5 @@
 try:
+    import io
     import ctypes
     import getpass
     import sys
@@ -13,12 +14,18 @@ try:
     import getmac
     import string
     import colorama
+    import cfonts
+    import random
     from consts import (
         API_USE ,
         AF_INET ,
         AF_PACKET ,
         WINDOWS ,
-        LINUX
+        LINUX ,
+        ALIGNMENT ,
+        APPNAME ,
+        FONTTYPE ,
+        VERSION
     )
 
 except:
@@ -52,6 +59,15 @@ class Tools:
         self.uptimeSystem = builtins.str("{0}:{1}:{2}:{3}").format(self.days , self.hour , self.mins , self.sec)
         self.userName = getpass.getuser()
         self.listSysInfo = []
+        self.driveTypes = [
+            'DRIVE_UNKNOWN',
+            'DRIVE_NO_ROOT_DIR',
+            'DRIVE_REMOVABLE',
+            'DRIVE_FIXED',
+            'DRIVE_REMOTE',
+            'DRIVE_CDROM',
+            'DRIVE_RAMDISK'
+        ]
         self.bitMask = ctypes.windll.kernel32.GetLogicalDrives()
         self.gpuInfo = GPUtil.getGPUs()
         self.drivesInfo = psutil.disk_partitions()
@@ -137,27 +153,27 @@ class Tools:
             if self.bitMask & 1 :
                 self.listDrives.append(driver)
             self.bitMask >>= 1
-        print(self.listDrives)
+        builtins.print(self.listDrives)
 
     def ShowGPU_ID(self) -> builtins.str:
         for gpu in self.gpuInfo:
             gpuID = gpu.id
-        print(gpuID)
+        builtins.print(gpuID)
 
     def ShowGPUName(self) -> builtins.str:
         for gpu in self.gpuInfo:
             gpuName = gpu.name
-        print(gpuName)
+        builtins.print(gpuName)
 
     def ShowGPULoad(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuLoad = gpu.load * 100
             if gpuLoad > 50.0:
                 newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                print(newGpu)
+                builtins.print(newGpu)
             else:
                 newGpu = f"{colorama.ansi.Fore.GREEN}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                print(newGpu)
+                builtins.print(newGpu)
 
     def ShowGPUFreeMemory(self) -> builtins.float:
         for gpu in self.gpuInfo:
@@ -262,3 +278,28 @@ class Tools:
                     builtins.print(f"Mac Address : {address.address}")
                     builtins.print(f"Netmask : {address.netmask}")
                     builtins.print(f"Broadcast MAC : {address.broadcast}")
+
+
+class PrintHeaderClass:
+    def __init__(self , *args , **kwargs) -> builtins.bytearray:
+        builtins.super(PrintHeaderClass , self).__init__(*args , **kwargs)
+        self.colorList = [
+            "black" , "red" , "green" , "yellow" ,
+            "blue" , "magenta" , "cyan" , "white" ,
+            "gray"
+        ]
+        self.headerShow = cfonts.render(
+            text = APPNAME ,
+            colors = [
+                random.choice(self.colorList) ,
+                random.choice(self.colorList)
+            ] ,
+            align = ALIGNMENT ,
+            font = FONTTYPE
+        )
+
+    def HeaderPrint(self):
+        builtins.print(self.headerShow)
+
+if __name__ == "__main__":
+    PrintHeaderClass().HeaderPrint()
