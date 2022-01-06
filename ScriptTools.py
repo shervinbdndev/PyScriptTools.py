@@ -85,43 +85,43 @@ class Tools:
         self.ipAddrs =  psutil.net_if_addrs()
 
     def ShowLocalIP(self) -> builtins.str:
-        builtins.print(self.localIP)
+        return self.localIP
 
     def ShowPublicIP(self) -> builtins.str:
         try:
-            builtins.print(self.publicIP)
+            return self.publicIP
         except ConnectionError:
             pass
 
     def ShowMacAddress(self) -> builtins.str:
         try:
-            builtins.print(getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = True))
+            return getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = True)
         except ConnectionError:
             pass
 
     def ShowOsName(self) -> builtins.str:
-        builtins.print(self.osName)
+        return self.osName
 
     def ShowOsType(self) -> builtins.str:
-        builtins.print(self.osType)
+        return self.osType
 
     def ShowNodeName(self) -> builtins.str:
-        builtins.print(self.nodeName)
+        return self.nodeName
 
     def ShowOSRelease(self) -> builtins.str:
-        builtins.print(self.sysRelease)
+        return self.sysRelease
 
     def ShowOSVersion(self) -> builtins.str:
-        builtins.print(self.sysVersion)
+        return self.sysVersion
 
     def ShowSystemName(self) -> builtins.str:
-        builtins.print(self.systemName)
+        return self.systemName
 
     def ShowSystemUptime(self) -> builtins.str:
-        builtins.print(self.uptimeSystem)
+        return self.uptimeSystem
 
     def ShowUserName(self) -> builtins.str:
-        builtins.print(self.userName)
+        return self.userName
 
     def ShowSystemInformation(self) -> builtins.str:
         if platform.system() == WINDOWS:
@@ -146,111 +146,111 @@ class Tools:
             )
 
     def ShowPythonVersion(self) -> builtins.str:
-        builtins.print(self.pythonVer)
+        return self.pythonVer
 
     def ShowDrives(self) -> builtins.str:
         for driver in string.ascii_uppercase:
             if self.bitMask & 1 :
                 self.listDrives.append(driver)
             self.bitMask >>= 1
-        builtins.print(self.listDrives)
+        return self.listDrives
 
     def ShowGPU_ID(self) -> builtins.str:
         for gpu in self.gpuInfo:
             gpuID = gpu.id
-        builtins.print(gpuID)
+        return gpuID
 
     def ShowGPUName(self) -> builtins.str:
         for gpu in self.gpuInfo:
             gpuName = gpu.name
-        builtins.print(gpuName)
+        return gpuName
 
     def ShowGPULoad(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuLoad = gpu.load * 100
             if gpuLoad > 50.0:
                 newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                builtins.print(newGpu)
+                return newGpu
             else:
                 newGpu = f"{colorama.ansi.Fore.GREEN}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                builtins.print(newGpu)
+                return newGpu
 
     def ShowGPUFreeMemory(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuFree = gpu.memoryFree
-        builtins.print(gpuFree)
+        return gpuFree
 
     def ShowGPUUsedMemory(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuUsed = f"{gpu.memoryUsed}MB"
-        builtins.print(gpuUsed)
+        return gpuUsed
 
     def ShowGPUTotalMemory(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuTot = f"{gpu.memoryTotal}MB"
-        builtins.print(gpuTot)
+        return gpuTot
 
     def ShowGPUTemperature(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuTemp = f"{gpu.temperature}℃"
-        builtins.print(gpuTemp)
+        return gpuTemp
 
     def ShowGPU_UUID(self) -> builtins.str:
         for gpu in self.gpuInfo:
             gpuUUID = gpu.uuid
-        builtins.print(gpuUUID)
+        return gpuUUID
 
     def ShowBootTime(self) -> builtins.str:
-        builtins.print(self.bootTime)
+        return self.bootTime
 
     def ShowCPUType(self) -> builtins.str:
-        builtins.print(self.cpuType)
+        return self.cpuType
 
     def ShowCPUPhysicalCores(self) -> builtins.int:
-        builtins.print(self.phCores)
+        return self.phCores
 
     def ShowCPUTotalCores(self) -> builtins.str:
-        builtins.print(self.totCores)
+        return self.totCores
 
     def ShowCPUMaxFrequency(self) -> builtins.float:
-        builtins.print(f"{self.cpuFreq.max:.2f}Mhz")
+        return f"{self.cpuFreq.max:.2f}Mhz"
 
     def ShowCPUMinFrequency(self) -> builtins.float:
-        builtins.print(f"{self.cpuFreq.min:.2f}Mhz")
+        return f"{self.cpuFreq.min:.2f}Mhz"
 
     def ShowCPUCurrentFrequency(self) -> builtins.float:
-        builtins.print(f"{self.cpuFreq.current:.2f}Mhz")
+        return f"{self.cpuFreq.current:.2f}Mhz"
 
     def ShowCPUTotalUsage(self) -> builtins.float:
-        builtins.print(f"{psutil.cpu_percent()}%")
+        return f"{psutil.cpu_percent()}%"
 
     def ShowCPUUsagePerCore(self) -> builtins.str:
         for core , percentage in builtins.enumerate(psutil.cpu_percent(percpu = True , interval = 1)):
-            builtins.print(f"Core {core} : {percentage}%")
+            return f"Core {core} : {percentage}%"
 
     def ShowTotalRAM(self) -> builtins.float:
-        builtins.print(f"{getSize(self.ramVir.total)}")
+        return f"{getSize(self.ramVir.total)}"
 
     def ShowAvailableRAM(self) -> builtins.float:
-        builtins.print(f"{getSize(self.ramVir.available)}")
+        return f"{getSize(self.ramVir.available)}"
 
     def ShowUsedRAM(self) -> builtins.float:
-        builtins.print(f"{getSize(self.ramVir.used)}")
+        return f"{getSize(self.ramVir.used)}"
 
     def ShowRAMPercentage(self) -> builtins.float:
-        builtins.print(f"{getSize(self.ramVir.percent)}%")
+        return f"{getSize(self.ramVir.percent)}%"
 
     def ShowTotalSwap(self) -> builtins.float:
-        builtins.print(f"{getSize(self.swapMemo.total)}")
+        return f"{getSize(self.swapMemo.total)}"
 
     def ShowFreeSwap(self) -> builtins.int:
-        builtins.print(f"{getSize(self.swapMemo.free)}")
+        return f"{getSize(self.swapMemo.free)}"
 
     def ShowUsedSwap(self) -> builtins.float:
-        builtins.print(f"{getSize(self.swapMemo.used)}")
+        return f"{getSize(self.swapMemo.used)}"
 
     def ShowSwapPercentage(self) -> builtins.float:
-        builtins.print(f"{getSize(self.swapMemo.percent)}%")
+        return f"{getSize(self.swapMemo.percent)}%"
 
     def ShowDiskInfo(self) -> builtins.str:
         for partition in self.drivesInfo:
@@ -279,6 +279,38 @@ class Tools:
                     builtins.print(f"Netmask : {address.netmask}")
                     builtins.print(f"Broadcast MAC : {address.broadcast}")
 
+    def ConvertToAscii(self , text:str , colors:list , align:str , font:str):
+        """
+            Function Usage :
+                text = text
+                alignment = ("left" , "center" , "right")
+                fontType =  "console"
+                            "block"
+                            "simpleBlock"
+                            "simple"
+                            "3d"
+                            "simple3d"
+                            "chrome"
+                            "huge"
+                            "grid"
+                            "pallet"
+                            "shade"
+                            "slick"
+                            "tiny"
+                ConverToAscii(text , [color1 , color2] , alignment , fontType)
+        """
+        self.text = text
+        self.colors = colors
+        self.align = align
+        self.font = font
+        self.configuration = cfonts.render(
+            text = self.text ,
+            colors = self.colors ,
+            align = self.align ,
+            font = self.font
+        )
+        return self.configuration
+
 
 class PrintHeaderClass:
     def __init__(self , *args , **kwargs) -> builtins.bytearray:
@@ -299,7 +331,7 @@ class PrintHeaderClass:
         )
 
     def HeaderPrint(self):
-        builtins.print(self.headerShow)
+        return self.headerShow
 
 if __name__ == "__main__":
     PrintHeaderClass().HeaderPrint()
