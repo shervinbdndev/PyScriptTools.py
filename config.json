@@ -1,5 +1,5 @@
 {
-    "consts_json" : {
+    "config_json" : {
         "dunders" : {
             "__version__" : "4.0.0" ,
             "__author__" : "Shervin Badanara"
