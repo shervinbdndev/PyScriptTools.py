@@ -114,9 +114,10 @@
                     }
                 } ,
                 "OtherTools" : {
-                    "number_of_methods" : 1 ,
+                    "number_of_methods" : 2 ,
                     "methods" : {
-                        "ConvertToAscii" : "available"
+                        "ConvertToAscii" : "available" ,
+                        "IsPath" : "not available"
                     }
                 }
             }
