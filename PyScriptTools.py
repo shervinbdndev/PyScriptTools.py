@@ -1,8 +1,10 @@
 try:
+    import os
     import ctypes
     import getpass
     import sys
     import platform
+    import subprocess
     import requests
     import json
     import socket
@@ -23,18 +25,17 @@ try:
         LINUX ,
         ALIGNMENT ,
         APPNAME ,
-        FONTTYPE ,
-        VERSION
+        FONTTYPE
     )
 
 except:
-    raise Exception
+    raise ModuleNotFoundError
 
 
 def getSize(bytes , default = "B"):
     bandLength = 1024
     for unit in ["" , "K" , "M" , "G" , "T" , "P"]:
-        if bytes < bandLength:
+        if (bytes < bandLength):
             return f"{bytes:.2f}{unit}{default}"
         bytes /= bandLength
 
@@ -70,11 +71,11 @@ class NetworkTools:
         for interfaceName , interfaceAddresses in self.ipAddrs.items():
             for address in interfaceAddresses:
                 builtins.print(f"{colorama.ansi.Fore.GREEN}=== Interface :{colorama.ansi.Fore.MAGENTA} {interfaceName} {colorama.ansi.Fore.GREEN}===")
-                if builtins.str(address.family) == AF_INET:
+                if (builtins.str(address.family) == AF_INET):
                     builtins.print(f"{colorama.ansi.Fore.WHITE}IP Address : {address.address}")
                     builtins.print(f"Netmask : {address.netmask}")
                     builtins.print(f"Broadcast IP : {address.broadcast}")
-                elif builtins.str(address.family) == AF_PACKET:
+                elif (builtins.str(address.family) == AF_PACKET):
                     builtins.print(f"Mac Address : {address.address}")
                     builtins.print(f"Netmask : {address.netmask}")
                     builtins.print(f"Broadcast MAC : {address.broadcast}")
@@ -89,6 +90,7 @@ class CPUTools:
         self.phCores = psutil.cpu_count(logical = False)
         self.totCores = psutil.cpu_count(logical = True)
         self.cpuFreq = psutil.cpu_freq()
+        self.cpuType = platform.uname().processor
 
     def ShowCPUType(self) -> builtins.str:
         return self.cpuType
@@ -137,7 +139,7 @@ class GPUTools:
     def ShowGPULoad(self) -> builtins.float:
         for gpu in self.gpuInfo:
             gpuLoad = gpu.load * 100
-            if gpuLoad > 50.0:
+            if (gpuLoad > 50.0):
                 newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
                 return newGpu
             else:
@@ -173,9 +175,9 @@ class GPUTools:
 
 
 
-class RamTools:
+class RAMTools:
     def __init__(self , *args , **kwargs):
-        builtins.super(RamTools , self).__init__(*args , **kwargs)
+        builtins.super(RAMTools , self).__init__(*args , **kwargs)
         self.ramVir = psutil.virtual_memory()
         self.swapMemo = psutil.swap_memory()
     
@@ -225,7 +227,7 @@ class DiskTools:
 
     def ShowDrives(self) -> builtins.list:
         for driver in string.ascii_uppercase:
-            if self.bitMask & 1 :
+            if (self.bitMask & 1) :
                 self.listDrives.append(driver)
             self.bitMask >>= 1
         return self.listDrives
@@ -263,7 +265,6 @@ class SystemTools:
         self.userName = getpass.getuser()
         self.listSysInfo = []
         self.pythonVer = sys.version[0:6]
-        self.cpuType = platform.uname().processor
         self.nodeName = platform.uname().node
         self.sysRelease = platform.uname().release
         self.sysVersion = platform.uname().version
@@ -294,7 +295,7 @@ class SystemTools:
         return self.userName
 
     def ShowSystemInformation(self) -> builtins.str:
-        if platform.system() == WINDOWS:
+        if (platform.system() == WINDOWS):
             builtins.print(
                 f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.BLUE}{self.osName}" ,
                 f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{self.osType}" ,
@@ -304,7 +305,7 @@ class SystemTools:
                 f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{self.uptimeSystem}" ,
                 f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{self.userName}"
             )
-        elif platform.system() == LINUX:
+        elif (platform.system() == LINUX):
             builtins.print(
                 f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.YELLOW}{self.osName}" ,
                 f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{self.osType}" ,
@@ -329,8 +330,9 @@ class SystemTools:
 class OtherTools:
     def __init__(self , *args , **kwargs):
         builtins.super(OtherTools , self).__init__(*args , **kwargs)
+        self.pathValidation = bool()
 
-    def ConvertToAscii(self , text:str , colors:list , align:str , font:str):
+    def ConvertToAscii(self , text:str , colors:list , align:str , font:str) -> builtins.str:
         """
             Function Usage :
                 text = text
@@ -363,6 +365,12 @@ class OtherTools:
         return self.configuration
 
 
+    def IsPath(self , pathaddr : str) -> builtins.str:
+        if (os.path.exists(r"{0}".format(pathaddr)) and (platform.system()[0].upper() in ["W" , "L" , "J"])):
+            return f"{colorama.ansi.Fore.GREEN}The Path Exists\nThe Code Output is {colorama.ansi.Fore.BLUE}{True}"
+        else:
+            return f"{colorama.ansi.Fore.RED}The Path Doesn't Exist\nThe Code Output is {colorama.ansi.Fore.BLUE}{False}"
+
 
 
 
@@ -388,5 +396,7 @@ class PrintHeaderClass:
     def HeaderPrint(self):
         return self.headerShow
 
-if __name__ == "__main__":
-    PrintHeaderClass().HeaderPrint()
+
+
+if (__name__ == "__main__" and platform.system()[0].upper() in ["W" , "L" , "J"]):
+    print(PrintHeaderClass().HeaderPrint())
