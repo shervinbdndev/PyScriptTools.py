@@ -1,6 +1,6 @@
 # Dunders
-__version__ = "4.0.0"
-__author__ = "Shervin Badanara (shervin-glitch)"
+__version__ = "4.0.1"
+__author__ = "Shervin Badanara (shervinbdndev)"
 
 # Consts
 WINDOWS = "Windows"
