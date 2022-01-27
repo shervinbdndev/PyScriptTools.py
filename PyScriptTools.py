@@ -4,11 +4,11 @@ try:
     import getpass
     import sys
     import platform
-    import subprocess
     import requests
     import json
     import socket
     import builtins
+    import time
     import GPUtil
     import psutil
     import datetime
@@ -79,6 +79,31 @@ class NetworkTools:
                     builtins.print(f"Mac Address : {address.address}")
                     builtins.print(f"Netmask : {address.netmask}")
                     builtins.print(f"Broadcast MAC : {address.broadcast}")
+
+    def ShowSavedNetworks(self) -> builtins.str:
+        if (platform.system()[0].upper() == "W"):
+            for i in os.popen("netsh wlan show profiles"):
+                if ("All User Profile" in i):
+                    i = str(i).split(":")
+                    i = f"{colorama.ansi.Fore.GREEN}Network Name : {colorama.ansi.Fore.MAGENTA} {i[1].strip()}"
+                    print(i)
+                    continue
+        else:
+            return f"{colorama.ansi.Fore.YELLOW}This Method Only Works on Windows OS !!!"
+
+    def TestConnection(self):
+        try:
+            req = requests.get("https://google.com" , timeout = 5)
+            return f"{colorama.ansi.Fore.GREEN}You're Connected To Internet"
+        except (requests.ConnectionError , requests.Timeout) as E:
+            return f"{colorama.ansi.Fore.RED}You're not Connected To Internet \n{E}"
+
+    def StatusCodeChecker(self , link : str):
+        for code in range(200 , 599 + 1):
+            if (requests.get(link).status_code == code):
+                print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.GREEN}is Available")
+            else:
+                print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.RED}is not Available")
 
 
 
