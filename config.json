@@ -43,13 +43,15 @@
         "modules" : {
             "classes" : {
                 "NetworkTools" : {
-                    "number_of_methods" : 5 ,
+                    "number_of_methods" : 7 ,
                     "methods" : {
                         "ShowLocalIP" : "available" ,
                         "ShowPublicIP" : "available" ,
                         "ShowMacAddress" : "available" ,
                         "ShowNetworkInfo" : "available" ,
-                        "ShowSavedNetworks" : "not available yet"
+                        "ShowSavedNetworks" : "available" ,
+                        "TestConnection" : "available" ,
+                        "StatusCodeChecker" : "available"
                     }
                 } ,
                 "CPUTools" : {
