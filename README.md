@@ -177,5 +177,5 @@ Windows
 
 # Enjoy :)
 
-<hr>
+<br>
 <h3><b>Package Uploaded in PYPI :<a href="https://pypi.org/project/PyScriptTools/">Here</a></b></h3>
