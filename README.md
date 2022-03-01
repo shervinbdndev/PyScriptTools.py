@@ -6,6 +6,14 @@ Developed by Shervin Badanara (shervinbdndev) on Github
 
 ## Examples of How To Use
 
+For Installation Open Your CMD or Terminal and Type the Code Bellow
+```python
+pip install PyScriptTools
+```
+Thats it Now You Can Use it
+
+<hr>
+
 Print Your Public Address
 
 ```python
