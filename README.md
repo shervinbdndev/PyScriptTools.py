@@ -124,11 +124,29 @@ GPU-fbe80806-8a49-abk8-ab8c-509d65993cb9
 
 If You Want To See Your RAM Status Use These Codes Below
 ```python
+from PyScriptTools import RAMTools
 
+ram_obj = RAMTools()
+
+print(ram_obj.ShowTotalRAM())
+print(ram_obj.ShowAvailableRAM())
+print(ram_obj.ShowUsedRAM())
+print(ram_obj.ShowRAMPercentage())
+print(ram_obj.ShowTotalSwap())
+print(ram_obj.ShowFreeSwap())
+print(ram_obj.ShowUsedSwap())
+print(ram_obj.ShowSwapPercentage())
 ```
 Output
 ```python
-
+31.90GB
+24.55GB
+7.34GB
+23.00B%
+36.65GB
+26.97GB
+9.67GB
+26.40B%
 ```
 
 <hr>
