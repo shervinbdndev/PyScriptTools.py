@@ -28,6 +28,7 @@ Output
 89.39.108.150
 ```
 
+<hr>
 
 Also You Can Print Your Public IP To asccii Art !!!
 ```python
@@ -51,6 +52,7 @@ Output
  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 ```
+<hr>
 
 Wanna See Your CPU Information?
 ```python
@@ -88,6 +90,35 @@ Core 9 : 1.5%
 Core 10 : 1.5%
 Core 11 : 1.5%
 ```
+<hr>
 
+How About GPU Information?
+```python
+from PyScriptTools import GPUTools
+
+cpu_obj = GPUTools()
+
+print(cpu_obj.ShowGPU_ID())
+print(cpu_obj.ShowGPUName())
+print(cpu_obj.ShowGPULoad())
+print(cpu_obj.ShowGPUFreeMemory())
+print(cpu_obj.ShowGPUUsedMemory())
+print(cpu_obj.ShowGPUTotalMemory())
+print(cpu_obj.ShowGPUTemperature())
+print(cpu_obj.ShowGPU_UUID())
+
+```
+
+Output
+```python
+0
+NVIDIA GeForce RTX 2060
+10.0%
+5250.0
+729.0MB
+6144.0MB
+49.0℃
+GPU-fbe80806-8a49-abk8-ab8c-509d65993cb9
+```
 <hr>
 <h3><b>Package Uploaded in PYPI :<a href="https://pypi.org/project/PyScriptTools/">Here</a></b></h3>
