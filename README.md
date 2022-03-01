@@ -14,7 +14,7 @@ Thats it Now You Can Use it
 
 <hr>
 
-Print Your Public Address
+Print Your Public IP Address
 
 ```python
 from PyScriptTools import NetworkTools
