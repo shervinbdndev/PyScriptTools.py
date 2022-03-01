@@ -96,16 +96,16 @@ How About GPU Information?
 ```python
 from PyScriptTools import GPUTools
 
-cpu_obj = GPUTools()
+gpu_obj = GPUTools()
 
-print(cpu_obj.ShowGPU_ID())
-print(cpu_obj.ShowGPUName())
-print(cpu_obj.ShowGPULoad())
-print(cpu_obj.ShowGPUFreeMemory())
-print(cpu_obj.ShowGPUUsedMemory())
-print(cpu_obj.ShowGPUTotalMemory())
-print(cpu_obj.ShowGPUTemperature())
-print(cpu_obj.ShowGPU_UUID())
+print(gpu_obj.ShowGPU_ID())
+print(gpu_obj.ShowGPUName())
+print(gpu_obj.ShowGPULoad())
+print(gpu_obj.ShowGPUFreeMemory())
+print(gpu_obj.ShowGPUUsedMemory())
+print(gpu_obj.ShowGPUTotalMemory())
+print(gpu_obj.ShowGPUTemperature())
+print(gpu_obj.ShowGPU_UUID())
 
 ```
 
@@ -120,5 +120,16 @@ NVIDIA GeForce RTX 2060
 49.0℃
 GPU-fbe80806-8a49-abk8-ab8c-509d65993cb9
 ```
+<hr>
+
+If You Want To See Your RAM Status Use These Codes Below
+```python
+
+```
+Output
+```python
+
+```
+
 <hr>
 <h3><b>Package Uploaded in PYPI :<a href="https://pypi.org/project/PyScriptTools/">Here</a></b></h3>
