@@ -149,7 +149,9 @@ Output
 26.40B%
 ```
 <hr>
+
 And Many Many Methods That You Can Use To See Your System Information Like
+
 ```python
 from PyScriptTools import SystemTools
 
