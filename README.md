@@ -148,6 +148,32 @@ Output
 9.67GB
 26.40B%
 ```
+<hr>
+And Many Many Methods That You Can Use To See Your System Information Like
+```python
+from PyScriptTools import SystemTools
 
+system_obj = SystemTools()
+
+print(system_obj.ShowOsName())
+print(system_obj.ShowOSRelease())
+print(system_obj.ShowOSVersion())
+print(system_obj.ShowSystemUptime())
+print(system_obj.ShowPythonVersion())
+print(system_obj.ShowBootTime())
+```
+
+Output
+
+```python
+Windows
+10
+10.0.22000
+7:1:8:41
+3.9.0 
+2022-02-22 00:19:29.929349
+```
+<hr>
+# Enjoy :)
 <hr>
 <h3><b>Package Uploaded in PYPI :<a href="https://pypi.org/project/PyScriptTools/">Here</a></b></h3>
