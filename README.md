@@ -35,4 +35,4 @@ print(ascii_obj.ConvertToAscii(network_obj.ShowPublicIP() , ['green' , 'red'] , 
 ```
 
 <hr>
-<h3><b>Package uploaded in PYPI :<a href="https://pypi.org/project/PyScriptTools/">Here</a></b></h3>
+<h3><b>Package Uploaded in PYPI :<a href="https://pypi.org/project/PyScriptTools/">Here</a></b></h3>
