@@ -1,4 +1,4 @@
-<h2 align='center' style="font-size:5rem"><b>PyScriptTools</b></h2>
+<h1 align='center' style="font-size:5rem"><b>PyScriptTools</b></h1>
 <h2 align='center'><b>V 4.1.1</b></h2>
 <div align="center">
     <div align="center">
