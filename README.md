@@ -1,6 +1,6 @@
 <h1 align='center'>PyScriptTools</h1>
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula)](https://github.com/shervinbdndev/PyScriptTools/)
+<img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"></img>
 
 <h3 align='center'>Under construction! Not ready for use yet! Currently experimenting and planning!</h3>
 <h3 align='center'>Developed by Shervin Badanara (shervinbdndev) on Github</h3>
