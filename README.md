@@ -1,5 +1,9 @@
 <h1 align='center'><b>PyScriptTools</b></h1>
-
+<div align="center">
+    <img src="https://img.shields.io/github/forks/shervinbdndev/PyScriptTools.svg"></img>
+    <img src="https://img.shields.io/github/stars/shervinbdndev/PyScriptTools.svg"></img>
+    <img src="https://img.shields.io/github/watchers/shervinbdndev/PyScriptTools.svg"></img>
+</div>
 <div align="center">
     <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"></img>
 </div>
@@ -26,7 +30,6 @@
 <img src="https://img.shields.io/badge/Intel-Core_i5_10700K-0071C5?style=for-the-badge&logo=intel&logoColor=white"></img>
 <img src="https://img.shields.io/badge/NVIDIA-RTX2060 OC-76B900?style=for-the-badge&logo=nvidia&logoColor=white"></img>
 <img src="https://img.shields.io/badge/Windows11-0078D6?style=for-the-badge&logo=windows&logoColor=white"></img>
-<img src=""></img>
 
 
 <hr>
