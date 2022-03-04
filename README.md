@@ -1,16 +1,18 @@
 <h1 align='center'><b>PyScriptTools</b></h1>
 <div align="center">
+    <div align="center">
+        <img src="https://img.shields.io/github/license/shervinbdndev/PyScriptTools.svg"></img>
+    </div>
     <img src="https://img.shields.io/github/forks/shervinbdndev/PyScriptTools.svg"></img>
     <img src="https://img.shields.io/github/stars/shervinbdndev/PyScriptTools.svg"></img>
     <img src="https://img.shields.io/github/watchers/shervinbdndev/PyScriptTools.svg"></img>
-    <br>
     <img src="https://img.shields.io/github/issues-pr/shervinbdndev/PyScriptTools.svg"></img>
     <img src="https://img.shields.io/github/issues-pr-closed/shervinbdndev/PyScriptTools.svg"></img>
+    <img src="https://img.shields.io/github/downloads/shervinbdndev/PyScriptTools/total.svg"></img>
 </div>
+<br>
 <div align="center">
     <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"><a href="https://github.com/shervinbdndev/PyScriptTools"></a></img>
-    <br>
-    <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shervinbdndev&theme=blue-green"></img>
 </div>
 <br>
 <h3 align='center'>Under construction! Not ready for use yet! Currently experimenting and planning!</h3>
