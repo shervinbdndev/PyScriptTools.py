@@ -1,7 +1,7 @@
 <h1 align='center'>PyScriptTools</h1>
 
 <div align="center">
-    <img style="display:block;margin-left:auto;margin-right:auto;width:50%;" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"></img>
+    <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"></img>
 </div>
 
 <h3 align='center'>Under construction! Not ready for use yet! Currently experimenting and planning!</h3>
