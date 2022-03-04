@@ -1,11 +1,13 @@
 <h1 align='center'>PyScriptTools</h1>
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula)](https://github.com/shervinbdndev/PyScriptTools/)
+
 <h3 align='center'>Under construction! Not ready for use yet! Currently experimenting and planning!</h3>
 <h3 align='center'>Developed by Shervin Badanara (shervinbdndev) on Github</h3>
 <hr>
 
+<br><br><br>
 <h1 align='center'>Update Your Interpreter</h1>
-
-<h2 align='center'>If Your Using pip</h2>
 
 # Windows / CMD
 
@@ -19,19 +21,10 @@ py -m pip install --upgrade pip
 python -m pip install --upgrade pip
 ```
 <br>
-<h2 align='center'>If Your Using conda</h2>
-
-# Windows / CMD , Linux / Terminal
-
-```python
-conda update conda
-```
 
 <hr>
 <br><br><br>
 <h1 align='center'>Installation</h1>
- 
-<h2 align='center'>If Your Using pip</h2>
  
 # Windows / CMD , Linux / Terminal
 ```python
@@ -48,14 +41,21 @@ pip3 install PyScriptTools
 py -m pip install PyScriptTools
 ```
 
-<br>
-<h2 align='center'>If Your Using conda</h2>
-
+<br><br><br>
+<h1 align='center'>Update Library</h1>
+ 
 # Windows / CMD , Linux / Terminal
+```python
+pip install -U PyScriptTools
+```
+
+<h2 align='left'>or</h2>
 
 ```python
-conda install PyScriptTools
+py -m pip install --upgrade PyScriptTools
 ```
+
+<br>
 
 <hr>
 <br><br><br>
