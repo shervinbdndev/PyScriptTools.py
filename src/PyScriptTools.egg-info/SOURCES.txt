@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+src/PyScriptTools.egg-info/PKG-INFO
+src/PyScriptTools.egg-info/SOURCES.txt
+src/PyScriptTools.egg-info/dependency_links.txt
+src/PyScriptTools.egg-info/requires.txt
+src/PyScriptTools.egg-info/top_level.txt

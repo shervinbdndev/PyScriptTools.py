@@ -46,7 +46,7 @@ class Constants:
         def author(cls , author : str = __author__) -> str:
             return author
     class Version:
-        __version__ : str = str("4.1.1")
+        __version__ : str = str("4.1.2")
         
         @classmethod
         def version(cls , version : str = __version__) -> str:
