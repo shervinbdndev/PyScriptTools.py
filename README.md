@@ -70,12 +70,12 @@ pip install PyScriptTools
 <h2 align='left'>or</h2>
 
 ```python
-pip3 install PyScriptTools
+py -m pip install PyScriptTools
 ```
 <h2 align='left'>or</h2>
 
 ```python
-py -m pip install PyScriptTools
+pip install -i https://test.pypi.org/simple/ PyScriptTools
 ```
 
 <br><br><br>
