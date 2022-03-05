@@ -1,5 +1,5 @@
 <h1 align='center' style="font-size:5rem"><b>PyScriptTools</b></h1>
-<h2 align='center'><b>Version 4.1.2</b></h2>
+<p align='center'><b>Version 4.1.2</b></p>
 <div align="center">
     <div align="center">
         <img src="https://img.shields.io/github/license/shervinbdndev/PyScriptTools.svg"></img>
