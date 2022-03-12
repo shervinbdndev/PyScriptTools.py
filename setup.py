@@ -22,7 +22,7 @@ setup(
     long_description=long_description,
     packages=find_packages() ,
     install_requires=['GPUtil' , 'requests' , 'sockets' , 'colorama' , 'python-cfonts' , 'setuptools' , 'wheel' , 'getmac' , 'psutil'] ,
-    keywords=['python', 'system', 'systeminfo', 'local ip', 'public ip', 'sockets' , 'cpu info' , 'gpu info'],
+    keywords=['python', 'system', 'systeminfo', 'local ip', 'public ip', 'sockets' , 'cpu info' , 'gpu info' , 'ram info' , 'disk info'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
