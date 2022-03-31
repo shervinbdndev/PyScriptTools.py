@@ -118,7 +118,7 @@ from PyScriptTools import (NetworkTools , OtherTools)
 network_obj = NetworkTools()
 ascii_obj = OtherTools()
 
-print(ascii_obj.ConvertToAscii(show=True , text=network_obj.ShowPublicIP() , colors=['green' , 'red'] , align='center' , font='shade'))
+print(ascii_obj.ConvertToAscii(show=True , text=network_obj.ShowPublicIP(show=True) , colors=['green' , 'red'] , align='center' , font='shade'))
 ```
 
 <b>Output</b>
