@@ -99,7 +99,7 @@ py -m pip install --upgrade PyScriptTools
 from PyScriptTools import NetworkTools
 
 network_obj = NetworkTools()
-public_ip = network_obj.ShowPublicIP()
+public_ip = network_obj.ShowPublicIP(show=True)
 print(public_ip)
 ```
 <b>Output</b>
@@ -118,7 +118,7 @@ from PyScriptTools import (NetworkTools , OtherTools)
 network_obj = NetworkTools()
 ascii_obj = OtherTools()
 
-print(ascii_obj.ConvertToAscii(network_obj.ShowPublicIP() , ['green' , 'red'] , 'center' , 'shade'))
+print(ascii_obj.ConvertToAscii(show=True , text=network_obj.ShowPublicIP() , colors=['green' , 'red'] , align='center' , font='shade'))
 ```
 
 <b>Output</b>
@@ -144,14 +144,14 @@ from PyScriptTools import CPUTools
 
 cpu_obj = CPUTools()
 
-print(cpu_obj.ShowCPUType())
-print(cpu_obj.ShowCPUPhysicalCores())
-print(cpu_obj.ShowCPUTotalCores())
-print(cpu_obj.ShowCPUMaxFrequency())
-print(cpu_obj.ShowCPUMinFrequency())
-print(cpu_obj.ShowCPUCurrentFrequency())
-print(cpu_obj.ShowCPUTotalUsage())
-print(cpu_obj.ShowCPUUsagePerCore())
+print(cpu_obj.ShowCPUType(show=True))
+print(cpu_obj.ShowCPUPhysicalCores(show=True))
+print(cpu_obj.ShowCPUTotalCores(show=True))
+print(cpu_obj.ShowCPUMaxFrequency(show=True))
+print(cpu_obj.ShowCPUMinFrequency(show=True))
+print(cpu_obj.ShowCPUCurrentFrequency(show=True))
+print(cpu_obj.ShowCPUTotalUsage(show=True))
+print(cpu_obj.ShowCPUUsagePerCore(show=True))
 ```
 <b>Output</b>
 
@@ -184,14 +184,14 @@ from PyScriptTools import GPUTools
 
 gpu_obj = GPUTools()
 
-print(gpu_obj.ShowGPU_ID())
-print(gpu_obj.ShowGPUName())
-print(gpu_obj.ShowGPULoad())
-print(gpu_obj.ShowGPUFreeMemory())
-print(gpu_obj.ShowGPUUsedMemory())
-print(gpu_obj.ShowGPUTotalMemory())
-print(gpu_obj.ShowGPUTemperature())
-print(gpu_obj.ShowGPU_UUID())
+print(gpu_obj.ShowGPU_ID(show=True))
+print(gpu_obj.ShowGPUName(show=True))
+print(gpu_obj.ShowGPULoad(show=True))
+print(gpu_obj.ShowGPUFreeMemory(show=True))
+print(gpu_obj.ShowGPUUsedMemory(show=True))
+print(gpu_obj.ShowGPUTotalMemory(show=True))
+print(gpu_obj.ShowGPUTemperature(show=True))
+print(gpu_obj.ShowGPU_UUID(show=True))
 
 ```
 
@@ -216,14 +216,14 @@ from PyScriptTools import RAMTools
 
 ram_obj = RAMTools()
 
-print(ram_obj.ShowTotalRAM())
-print(ram_obj.ShowAvailableRAM())
-print(ram_obj.ShowUsedRAM())
-print(ram_obj.ShowRAMPercentage())
-print(ram_obj.ShowTotalSwap())
-print(ram_obj.ShowFreeSwap())
-print(ram_obj.ShowUsedSwap())
-print(ram_obj.ShowSwapPercentage())
+print(ram_obj.ShowTotalRAM(show=True))
+print(ram_obj.ShowAvailableRAM(show=True))
+print(ram_obj.ShowUsedRAM(show=True))
+print(ram_obj.ShowRAMPercentage(show=True))
+print(ram_obj.ShowTotalSwap(show=True))
+print(ram_obj.ShowFreeSwap(show=True))
+print(ram_obj.ShowUsedSwap(show=True))
+print(ram_obj.ShowSwapPercentage(show=True))
 ```
 <b>Output</b>
 
@@ -246,12 +246,12 @@ from PyScriptTools import SystemTools
 
 system_obj = SystemTools()
 
-print(system_obj.ShowOsName())
-print(system_obj.ShowOSRelease())
-print(system_obj.ShowOSVersion())
-print(system_obj.ShowSystemUptime())
-print(system_obj.ShowPythonVersion())
-print(system_obj.ShowBootTime())
+print(system_obj.ShowOsName(show=True))
+print(system_obj.ShowOSRelease(show=True))
+print(system_obj.ShowOSVersion(show=True))
+print(system_obj.ShowSystemUptime(show=True))
+print(system_obj.ShowPythonVersion(show=True))
+print(system_obj.ShowBootTime(show=True))
 ```
 
 <b>Output</b>
