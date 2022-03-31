@@ -45,20 +45,20 @@ class Constants:
         __packagename__ : str = str("PyScriptTools")
         
         @classmethod
-        def name(cls , name : str = __packagename__) -> str:
-            return name
+        def name(cls) -> str:
+            return cls.__packagename__
     class Author:
         __author__ : str = str("Shervin Badanara")
         
         @classmethod
-        def author(cls , author : str = __author__) -> str:
-            return author
+        def author(cls) -> str:
+            return cls.__author__
     class Version:
-        __version__ : str = str("4.1.2")
+        __version__ : str = str("4.1.3")
         
         @classmethod
-        def version(cls , version : str = __version__) -> str:
-            return version
+        def version(cls) -> str:
+            return cls.__version__
 
 
 
