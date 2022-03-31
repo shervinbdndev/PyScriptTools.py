@@ -17,10 +17,16 @@ try:
     import cfonts
     import random
     from typing import (Tuple , Any)
-    from Validator.Validator import LengthValidator
+    from Validators.Validators import (
+        LengthValidator ,
+        StringValidator ,
+        IntegerValidator ,
+        BooleanValidator   
+    )
     from Exceptions.Exceptions import (
         NoneTypeArgumentInt ,
         NoneTypeArgumentString , 
+        NoneTypeArgumentBool ,
         AdminPermissionRequestDenied , 
         UnrecognizeableTypeArgument ,
         UndefinedOperatingSystem ,
@@ -61,12 +67,15 @@ class NetworkTools:
         Returns:
             str: _Local IP_
         """
-        if (show is True):
-            return cls.localIP
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.localIP
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowPublicIP(cls , show : bool = False) -> str:
@@ -78,15 +87,18 @@ class NetworkTools:
         Returns:
             str: _Public IP_
         """
-        if (show is True):
-            try:
-                return cls.publicIP
-            except ConnectionError:
-                pass
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                try:
+                    return cls.publicIP
+                except ConnectionError:
+                    pass
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowMacAddress(cls , show : bool = False , network_request : bool = True) -> str:
@@ -99,15 +111,18 @@ class NetworkTools:
         Returns:
             str: _MAC Address_
         """
-        if (show is True):
-            try:
-                return getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = network_request)
-            except ConnectionError:
-                pass
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean([show , network_request])):
+            if (show is True):
+                try:
+                    return getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = network_request)
+                except ConnectionError:
+                    pass
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowNetworkInfo(cls , show : bool = False) -> str:
@@ -119,22 +134,25 @@ class NetworkTools:
         Returns:
             str: _Shows Some of Your Network Information_
         """
-        if (show is True):
-            for interfaceName , interfaceAddresses in cls.ipAddrs.items():
-                for address in interfaceAddresses:
-                    print(f"{colorama.ansi.Fore.GREEN}=== Interface :{colorama.ansi.Fore.MAGENTA} {interfaceName} {colorama.ansi.Fore.GREEN}===")
-                    if (str(address.family) == "AddressFamily.AF_INET"):
-                        print(f"{colorama.ansi.Fore.WHITE}IP Address : {address.address}")
-                        print(f"Netmask : {address.netmask}")
-                        print(f"Broadcast IP : {address.broadcast}")
-                    elif (str(address.family) == "AddressFamily.AF_PACKET"):
-                        print(f"Mac Address : {address.address}")
-                        print(f"Netmask : {address.netmask}")
-                        print(f"Broadcast MAC : {address.broadcast}")
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for interfaceName , interfaceAddresses in cls.ipAddrs.items():
+                    for address in interfaceAddresses:
+                        print(f"{colorama.ansi.Fore.GREEN}=== Interface :{colorama.ansi.Fore.MAGENTA} {interfaceName} {colorama.ansi.Fore.GREEN}===")
+                        if (str(address.family) == "AddressFamily.AF_INET"):
+                            print(f"{colorama.ansi.Fore.WHITE}IP Address : {address.address}")
+                            print(f"Netmask : {address.netmask}")
+                            print(f"Broadcast IP : {address.broadcast}")
+                        elif (str(address.family) == "AddressFamily.AF_PACKET"):
+                            print(f"Mac Address : {address.address}")
+                            print(f"Netmask : {address.netmask}")
+                            print(f"Broadcast MAC : {address.broadcast}")
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowSavedNetworks(cls , show : bool = False) -> str:
@@ -146,20 +164,23 @@ class NetworkTools:
         Returns:
             str: _Shows Saved Networks_
         """
-        if (show is True):
-            if (platform.system()[0].upper() == "W"):
-                for i in os.popen("netsh wlan show profiles"):
-                    if ("All User Profile" in i):
-                        i = str(i).split(":")
-                        i = f"{colorama.ansi.Fore.GREEN}Network Name : {colorama.ansi.Fore.MAGENTA} {i[1].strip()}"
-                        print(i)
-                        continue
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (platform.system()[0].upper() == "W"):
+                    for i in os.popen("netsh wlan show profiles"):
+                        if ("All User Profile" in i):
+                            i = str(i).split(":")
+                            i = f"{colorama.ansi.Fore.GREEN}Network Name : {colorama.ansi.Fore.MAGENTA} {i[1].strip()}"
+                            print(i)
+                            continue
+                else:
+                    return f"{colorama.ansi.Fore.YELLOW}This Method Only Works on Windows OS !!!"
+            elif (show is False):
+                return AdminPermissionRequestDenied
             else:
-                return f"{colorama.ansi.Fore.YELLOW}This Method Only Works on Windows OS !!!"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def TestConnection(cls , show : bool = False , timeout : int = 5):
@@ -172,19 +193,22 @@ class NetworkTools:
         Returns:
             _str_: _Tests Internet Connection_
         """
-        if (show is True):
-            if (type(timeout) is int):
-                try:
-                    req = requests.get("https://www.google.com" , timeout = timeout)
-                    return f"{colorama.ansi.Fore.GREEN}You're Connected To Internet"
-                except (requests.ConnectionError , requests.Timeout) as E:
-                    return f"{colorama.ansi.Fore.RED}You're not Connected To Internet \n{E}"
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (IntegerValidator.is_integer(timeout)):
+                    try:
+                        req = requests.get("https://www.google.com" , timeout = timeout)
+                        return f"{colorama.ansi.Fore.GREEN}You're Connected To Internet"
+                    except (requests.ConnectionError , requests.Timeout) as E:
+                        return f"{colorama.ansi.Fore.RED}You're not Connected To Internet \n{E}"
+                else:
+                    return NoneTypeArgumentInt
+            elif (show is False):
+                return AdminPermissionRequestDenied
             else:
-                return NoneTypeArgumentInt
-        elif (show is False):
-            return AdminPermissionRequestDenied
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def StatusCodeChecker(cls , show : bool = False , link : str = ''):
@@ -197,19 +221,22 @@ class NetworkTools:
         Returns:
             _str_: Status Codes Available in Link or IP Address
         """
-        if (show is True):
-            if (type(link) is str):
-                for code in range(200 , 599 + 1):
-                    if (requests.get(link).status_code == code):
-                        print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.GREEN}is Available")
-                    else:
-                        print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.RED}is not Available")
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (StringValidator.is_string(link)):
+                    for code in range(200 , 599 + 1):
+                        if (requests.get(link).status_code == code):
+                            print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.GREEN}is Available")
+                        else:
+                            print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.RED}is not Available")
+                else:
+                    return NoneTypeArgumentString
+            elif (show is False):
+                return AdminPermissionRequestDenied
             else:
-                return NoneTypeArgumentString
-        elif (show is False):
-            return AdminPermissionRequestDenied
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
@@ -249,12 +276,15 @@ class CPUTools:
         Returns:
             int: _CPU Physical Cores_
         """
-        if (show is True):
-            return cls.phCores
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.phCores
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowCPUTotalCores(cls , show : bool = False) -> str:
@@ -266,12 +296,15 @@ class CPUTools:
         Returns:
             str: _CPU Total Cores_
         """
-        if (show is True):
-            return cls.totCores
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.totCores
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowCPUMaxFreq(cls , show : bool = False) -> float:
@@ -283,12 +316,15 @@ class CPUTools:
         Returns:
             float: _CPU Maximum Frequency_
         """
-        if (show is True):
-            return f"{cls.cpuFreq.max:.2f}Mhz"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{cls.cpuFreq.max:.2f}Mhz"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
     
     @classmethod
     def ShowCPUMinFreq(cls , show : bool = False) -> float:
@@ -300,12 +336,15 @@ class CPUTools:
         Returns:
             float: _CPU Minimum Frequency_
         """
-        if (show is True):
-            return f"{cls.cpuFreq.min:.2f}Mhz"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{cls.cpuFreq.min:.2f}Mhz"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowCPUCurrentFreq(cls , show : bool = False) -> float:
@@ -317,12 +356,15 @@ class CPUTools:
         Returns:
             float: _CPU Current Frequency_
         """
-        if (show is True):
-            return f"{cls.cpuFreq.current:.2f}Mhz"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{cls.cpuFreq.current:.2f}Mhz"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowCPUTotalUsage(cls , show : bool = False) -> float:
@@ -334,12 +376,15 @@ class CPUTools:
         Returns:
             float: _CPU Total Frequency_
         """
-        if (show is True):
-            return f"{psutil.cpu_percent()}%"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{psutil.cpu_percent()}%"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowCPUUsagePerCore(cls , show : bool = False) -> str:
@@ -351,13 +396,16 @@ class CPUTools:
         Returns:
             float: _CPU Usage Per Cores_
         """
-        if (show is True):
-            for core , percentage in enumerate(psutil.cpu_percent(percpu = True , interval = 1)):
-                print(f"Core {core} : {percentage}%")
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for core , percentage in enumerate(psutil.cpu_percent(percpu = True , interval = 1)):
+                    print(f"Core {core} : {percentage}%")
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
@@ -377,14 +425,17 @@ class GPUTools:
         Returns:
             str: _GPU ID_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuID = gpu.id
-            return gpuID
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuID = gpu.id
+                return gpuID
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPUName(cls , show : bool = False) -> str:
@@ -396,14 +447,17 @@ class GPUTools:
         Returns:
             str: _GPU Name_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuName = gpu.name
-            return gpuName
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuName = gpu.name
+                return gpuName
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPULoad(cls , show : bool = False) -> float:
@@ -415,19 +469,22 @@ class GPUTools:
         Returns:
             float: _GPU Load_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuLoad = gpu.load * 100
-                if (gpuLoad > 50.0):
-                    newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                    return newGpu
-                else:
-                    newGpu = f"{colorama.ansi.Fore.GREEN}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                    return newGpu
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuLoad = gpu.load * 100
+                    if (gpuLoad > 50.0):
+                        newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
+                        return newGpu
+                    else:
+                        newGpu = f"{colorama.ansi.Fore.GREEN}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
+                        return newGpu
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPUFreeMemory(cls , show : bool = False) -> float:
@@ -439,14 +496,17 @@ class GPUTools:
         Returns:
             float: _GPU Free Memory_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuFree = gpu.memoryFree
-            return gpuFree
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuFree = gpu.memoryFree
+                return gpuFree
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPUUsedMemory(cls , show : bool = False) -> float:
@@ -458,14 +518,17 @@ class GPUTools:
         Returns:
             float: _GPU Used Memory_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuUsed = f"{gpu.memoryUsed}MB"
-            return gpuUsed
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuUsed = f"{gpu.memoryUsed}MB"
+                return gpuUsed
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPUTotalMemory(cls , show : bool = False) -> float:
@@ -477,14 +540,17 @@ class GPUTools:
         Returns:
             float: _GPU Total Memory_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuTot = f"{gpu.memoryTotal}MB"
-            return gpuTot
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuTot = f"{gpu.memoryTotal}MB"
+                return gpuTot
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPUTemperature(cls , show : bool = False) -> float:
@@ -496,14 +562,17 @@ class GPUTools:
         Returns:
             float: _GPU Temperature_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuTemp = f"{gpu.temperature}℃"
-            return gpuTemp
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuTemp = f"{gpu.temperature}℃"
+                return gpuTemp
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowGPU_UUID(cls , show : bool = False) -> str:
@@ -515,14 +584,17 @@ class GPUTools:
         Returns:
             str: _GPU UUID_
         """
-        if (show is True):
-            for gpu in cls.gpuInfo:
-                gpuUUID = gpu.uuid
-            return gpuUUID
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuUUID = gpu.uuid
+                return gpuUUID
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
@@ -542,12 +614,15 @@ class RAMTools:
         Returns:
             float: _Total RAM Memory_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.ramVir.total)}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.ramVir.total)}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowAvailableRAM(cls , show : bool = False) -> float:
@@ -559,12 +634,15 @@ class RAMTools:
         Returns:
             float: _Available RAM Memory_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.ramVir.available)}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.ramVir.available)}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowUsedRAM(cls , show : bool = False) -> float:
@@ -576,12 +654,15 @@ class RAMTools:
         Returns:
             float: _Used RAM Memory_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.ramVir.used)}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.ramVir.used)}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowRAMPercentage(cls , show : bool = False) -> float:
@@ -593,12 +674,15 @@ class RAMTools:
         Returns:
             float: _RAM Percentage_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.ramVir.percent)}%"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.ramVir.percent)}%"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowTotalSwap(cls , show : bool = False) -> float:
@@ -610,12 +694,15 @@ class RAMTools:
         Returns:
             float: _Total Swap Memory_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.swapMemo.total)}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.swapMemo.total)}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowFreeSwap(cls , show : bool = False) -> int:
@@ -627,12 +714,15 @@ class RAMTools:
         Returns:
             int: _Free Swap Memory_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.swapMemo.free)}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.swapMemo.free)}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowUsedSwap(cls , show : bool = False) -> float:
@@ -644,12 +734,15 @@ class RAMTools:
         Returns:
             float: _Used Swap Memory_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.swapMemo.used)}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.swapMemo.used)}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowSwapPercentage(cls , show : bool = False) -> float:
@@ -661,12 +754,15 @@ class RAMTools:
         Returns:
             float: _Swap Percentage_
         """
-        if (show is True):
-            return f"{LengthValidator.getSize(cls.swapMemo.percent)}%"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{LengthValidator.getSize(cls.swapMemo.percent)}%"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
@@ -689,16 +785,19 @@ class DiskTools:
         Returns:
             list: _List Of All Available Drives_
         """
-        if (show is True):
-            for driver in string.ascii_uppercase:
-                if (cls.bitMask & 1) :
-                    cls.listDrives.append(driver)
-                cls.bitMask >>= 1
-            return cls.listDrives
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for driver in string.ascii_uppercase:
+                    if (cls.bitMask & 1) :
+                        cls.listDrives.append(driver)
+                    cls.bitMask >>= 1
+                return cls.listDrives
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowParentDiskTotalMemory(cls , show : bool = False) -> float:
@@ -710,12 +809,15 @@ class DiskTools:
         Returns:
             list: _Parent Disk Total Memory_
         """
-        if (show is True):
-            return cls.parentDiskInfo.total / 1024 ** 3
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.parentDiskInfo.total / 1024 ** 3
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod    
     def ShowParentDiskUsedMemory(cls , show : bool = False) -> float:
@@ -727,12 +829,15 @@ class DiskTools:
         Returns:
             list: _Parent Disk Used Memory_
         """
-        if (show is True):
-            return cls.parentDiskInfo.used / 1024 ** 3
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.parentDiskInfo.used / 1024 ** 3
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod    
     def ShowParentDiskFreeMemory(cls , show : bool = False) -> float:
@@ -744,12 +849,15 @@ class DiskTools:
         Returns:
             list: _Parent Disk Free Memory_
         """
-        if (show is True):
-            return cls.parentDiskInfo.free / 1024 ** 3
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.parentDiskInfo.free / 1024 ** 3
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod    
     def ShowParentDiskPercentage(cls , show : bool = False) -> float:
@@ -761,12 +869,15 @@ class DiskTools:
         Returns:
             list: _Parent Disk Percentage_
         """
-        if (show is True):
-            return f"{cls.parentDiskInfo.percent:.2f}"
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return f"{cls.parentDiskInfo.percent:.2f}"
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod    
     def ShowDiskInfo(cls , show : bool = False) -> str:
@@ -778,23 +889,26 @@ class DiskTools:
         Returns:
             list: _Disk Information_
         """
-        if (show is True):
-            for partition in cls.drivesInfo:
-                print(f"{colorama.ansi.Fore.GREEN}=== Device : {partition.device} ===")
-                print(f"{colorama.ansi.Fore.WHITE}Mountpoint : {colorama.ansi.Fore.MAGENTA}{partition.mountpoint}{colorama.ansi.Fore.WHITE}")
-                print(f"File System Type : {partition.fstype}")
-                try:
-                    partitionUsage = psutil.disk_usage(partition.mountpoint)
-                except PermissionError:
-                    continue
-                print(f"Total Size : {LengthValidator.getSize(partitionUsage.total)}")
-                print(f"Used : {LengthValidator.getSize(partitionUsage.used)}")
-                print(f"Free : {LengthValidator.getSize(partitionUsage.free)}")
-                print(f"Percentage : {LengthValidator.getSize(partitionUsage.percent)}\n")
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                for partition in cls.drivesInfo:
+                    print(f"{colorama.ansi.Fore.GREEN}=== Device : {partition.device} ===")
+                    print(f"{colorama.ansi.Fore.WHITE}Mountpoint : {colorama.ansi.Fore.MAGENTA}{partition.mountpoint}{colorama.ansi.Fore.WHITE}")
+                    print(f"File System Type : {partition.fstype}")
+                    try:
+                        partitionUsage = psutil.disk_usage(partition.mountpoint)
+                    except PermissionError:
+                        continue
+                    print(f"Total Size : {LengthValidator.getSize(partitionUsage.total)}")
+                    print(f"Used : {LengthValidator.getSize(partitionUsage.used)}")
+                    print(f"Free : {LengthValidator.getSize(partitionUsage.free)}")
+                    print(f"Percentage : {LengthValidator.getSize(partitionUsage.percent)}\n")
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
@@ -829,12 +943,15 @@ class SystemTools:
         Returns:
             str: _Operating System's Name_
         """
-        if (show is True):
-            return cls.osName
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.osName
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowOsType(cls , show : bool = False) -> str:
@@ -846,12 +963,15 @@ class SystemTools:
         Returns:
             str: _Operating System's Type
         """
-        if (show is True):
-            return cls.osType
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.osType
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowNodeName(cls , show : bool = False) -> str:
@@ -863,12 +983,15 @@ class SystemTools:
         Returns:
             str: _Node Name or System's Name_
         """
-        if (show is True):
-            return cls.nodeName
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.nodeName
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowOSRelease(cls , show : bool = False) -> str:
@@ -880,12 +1003,15 @@ class SystemTools:
         Returns:
             str: _Operating System's Release_
         """
-        if (show is True):
-            return cls.sysRelease
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.sysRelease
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowOSVersion(cls , show : bool = False) -> str:
@@ -897,12 +1023,15 @@ class SystemTools:
         Returns:
             str: _Operating System's Version_
         """
-        if (show is True):
-            return cls.sysVersion
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.sysVersion
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowSystemName(cls , show : bool = False) -> str:
@@ -914,12 +1043,15 @@ class SystemTools:
         Returns:
             str: _System's Name_
         """
-        if (show is True):
-            return cls.systemName
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.systemName
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowSystemUptime(cls , show : bool = False) -> str:
@@ -931,12 +1063,15 @@ class SystemTools:
         Returns:
             str: _System's Uptime_
         """
-        if (show is True):
-            return cls.uptimeSystem
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.uptimeSystem
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowUserName(cls , show : bool = False) -> str:
@@ -948,12 +1083,15 @@ class SystemTools:
         Returns:
             str: _Active Logined Username_
         """
-        if (show is True):
-            return cls.userName
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.userName
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowSystemInformation(cls , show : bool = False , os_name : str = "Windows") -> str:
@@ -966,36 +1104,39 @@ class SystemTools:
         Returns:
             str: _Shows System Information Based On Your Operating System_
         """
-        if (show is True):
-            if (type(os_name) is str):
-                if (os_name == "Windows" or os_name.startswith(("W" , "w"))):
-                    print(
-                        f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.BLUE}{cls.osName}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{cls.osType}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{cls.sysRelease}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{cls.sysVersion}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{cls.systemName or cls.nodeName}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{cls.uptimeSystem}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{cls.userName}"
-                    )
-                elif (os_name == "Linux" or os_name.startswith(("L" , "l"))):
-                    print(
-                        f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.YELLOW}{cls.osName}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{cls.osType}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{cls.sysRelease}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{cls.sysVersion}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{cls.systemName or cls.nodeName}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{cls.uptimeSystem}" ,
-                        f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{cls.userName}"
-                    )
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (StringValidator.is_string(os_name)):
+                    if (os_name == "Windows" or os_name.startswith(("W" , "w"))):
+                        print(
+                            f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.BLUE}{cls.osName}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{cls.osType}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{cls.sysRelease}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{cls.sysVersion}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{cls.systemName or cls.nodeName}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{cls.uptimeSystem}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{cls.userName}"
+                        )
+                    elif (os_name == "Linux" or os_name.startswith(("L" , "l"))):
+                        print(
+                            f"{colorama.ansi.Fore.GREEN}OS Name : {colorama.ansi.Fore.YELLOW}{cls.osName}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}OS Type : {colorama.ansi.Fore.WHITE}{cls.osType}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{cls.sysRelease}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{cls.sysVersion}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{cls.systemName or cls.nodeName}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{cls.uptimeSystem}" ,
+                            f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{cls.userName}"
+                        )
+                    else:
+                        return UndefinedOperatingSystem
                 else:
-                    return UndefinedOperatingSystem
+                    return InvalidVariableType
+            elif (show is False):
+                return AdminPermissionRequestDenied
             else:
-                return InvalidVariableType
-        elif (show is False):
-            return AdminPermissionRequestDenied
+                UnrecognizeableTypeArgument
         else:
-            UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowPythonVersion(cls , show : bool = False) -> str:
@@ -1007,12 +1148,15 @@ class SystemTools:
         Returns:
             str: _Python Version_
         """
-        if (show is True):
-            return cls.pythonVer
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.pythonVer
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def ShowBootTime(cls , show : bool = False) -> str:
@@ -1024,12 +1168,15 @@ class SystemTools:
         Returns:
             str: _Operating System's Boot Time_
         """
-        if (show is True):
-            return cls.bootTime
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                return cls.bootTime
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
@@ -1053,23 +1200,26 @@ class OtherTools:
         Returns:
             str: _Customized Ascii Art_
         """
-        if (show is True):
-            if (type(text) in [Any , str]):
-                cls.text = str(text)
-                cls.colors = colors
-                cls.align = align
-                cls.font = font
-                cls.configuration = cfonts.render(
-                    text = cls.text ,
-                    colors = cls.colors ,
-                    align = cls.align ,
-                    font = cls.font
-                )
-                return cls.configuration
-        elif (show is False):
-            return AdminPermissionRequestDenied
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (StringValidator.is_string([text , font])):
+                    cls.text = str(text)
+                    cls.colors = colors
+                    cls.align = align
+                    cls.font = font
+                    cls.configuration = cfonts.render(
+                        text = cls.text ,
+                        colors = cls.colors ,
+                        align = cls.align ,
+                        font = cls.font
+                    )
+                    return cls.configuration
+            elif (show is False):
+                return AdminPermissionRequestDenied
+            else:
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
     @classmethod
     def IsPath(cls , show : bool = False , pathaddr : str = '') -> str:
@@ -1082,19 +1232,22 @@ class OtherTools:
         Returns:
             str: _Validates The Path You've Entered_
         """
-        if (show is True):
-            if (type(pathaddr) is str):
-                if (os.path.exists(r"{0}".format(pathaddr)) and (platform.system()[0].upper() in ["W" , "L" , "J"])):
-                    return f"{colorama.ansi.Fore.GREEN}The Path Exists\nThe Code Output is {colorama.ansi.Fore.BLUE}{True}"
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (StringValidator.is_string(pathaddr)):
+                    if (os.path.exists(r"{0}".format(pathaddr)) and (platform.system()[0].upper() in ["W" , "L" , "J"])):
+                        return f"{colorama.ansi.Fore.GREEN}The Path Exists\nThe Code Output is {colorama.ansi.Fore.BLUE}{True}"
+                    else:
+                        return f"{colorama.ansi.Fore.RED}The Path Doesn't Exist\nThe Code Output is {colorama.ansi.Fore.BLUE}{False}"
                 else:
-                    return f"{colorama.ansi.Fore.RED}The Path Doesn't Exist\nThe Code Output is {colorama.ansi.Fore.BLUE}{False}"
+                    return InvalidVariableType
+            elif (show is False):
+                return AdminPermissionRequestDenied
             else:
-                return InvalidVariableType
-        elif (show is False):
-            return AdminPermissionRequestDenied
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
-
+            return NoneTypeArgumentBool    
+        
     @classmethod
     def GetAbsOutput(cls , show : bool = False , string : str = '') -> str:
         """_summary_
@@ -1106,15 +1259,18 @@ class OtherTools:
         Returns:
             str: _Runs The Text as a Python Command or Expression_
         """
-        if (show is True):
-            if (type(string) is str):
-                return eval(string)
+        if (BooleanValidator.is_boolean(show)):
+            if (show is True):
+                if (StringValidator.is_string(string)):
+                    return eval(string)
+                else:
+                    return InvalidVariableType
+            elif (show is False):
+                return AdminPermissionRequestDenied
             else:
-                return InvalidVariableType
-        elif (show is False):
-            return AdminPermissionRequestDenied
+                return UnrecognizeableTypeArgument
         else:
-            return UnrecognizeableTypeArgument
+            return NoneTypeArgumentBool
 
 
 
