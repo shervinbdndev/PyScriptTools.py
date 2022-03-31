@@ -1,1 +1,3 @@
-from PyScriptTools import Constants
+from PyScriptTools import Version
+
+print(Version.__version__)

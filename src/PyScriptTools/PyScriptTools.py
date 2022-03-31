@@ -1,8 +1,10 @@
 try:
+    import io
     import os
-    import ctypes
-    import getpass
     import sys
+    import ctypes
+    import codecs
+    import getpass
     import platform
     import requests
     import json
@@ -16,6 +18,7 @@ try:
     import cfonts
     import random
     from typing import (Tuple , Any)
+    from Validator.Validator import LengthValidator
     from Exceptions.Exceptions import (
         NoneTypeArgumentInt ,
         NoneTypeArgumentString , 
@@ -30,36 +33,12 @@ except:
 
 
 
-def getSize(bytes , default = "B"):
-    bandLength = 1024
-    for unit in ["" , "K" , "M" , "G" , "T" , "P"]:
-        if (bytes < bandLength):
-            return f"{bytes:.2f}{unit}{default}"
-        bytes /= bandLength
 
 
 
-
-
-class Constants:
-    class Name:
-        __packagename__ : str = str("PyScriptTools")
-        
-        @classmethod
-        def name(cls) -> str:
-            return cls.__packagename__
-    class Author:
-        __author__ : str = str("Shervin Badanara")
-        
-        @classmethod
-        def author(cls) -> str:
-            return cls.__author__
-    class Version:
-        __version__ : str = str("4.1.3")
-        
-        @classmethod
-        def version(cls) -> str:
-            return cls.__version__
+class Version:
+    with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as v:
+        __version__ = v.readline()
 
 
 
@@ -565,7 +544,7 @@ class RAMTools:
             float: _Total RAM Memory_
         """
         if (show is True):
-            return f"{getSize(cls.ramVir.total)}"
+            return f"{LengthValidator.getSize(cls.ramVir.total)}"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -582,7 +561,7 @@ class RAMTools:
             float: _Available RAM Memory_
         """
         if (show is True):
-            return f"{getSize(cls.ramVir.available)}"
+            return f"{LengthValidator.getSize(cls.ramVir.available)}"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -599,7 +578,7 @@ class RAMTools:
             float: _Used RAM Memory_
         """
         if (show is True):
-            return f"{getSize(cls.ramVir.used)}"
+            return f"{LengthValidator.getSize(cls.ramVir.used)}"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -616,7 +595,7 @@ class RAMTools:
             float: _RAM Percentage_
         """
         if (show is True):
-            return f"{getSize(cls.ramVir.percent)}%"
+            return f"{LengthValidator.getSize(cls.ramVir.percent)}%"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -633,7 +612,7 @@ class RAMTools:
             float: _Total Swap Memory_
         """
         if (show is True):
-            return f"{getSize(cls.swapMemo.total)}"
+            return f"{LengthValidator.getSize(cls.swapMemo.total)}"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -650,7 +629,7 @@ class RAMTools:
             int: _Free Swap Memory_
         """
         if (show is True):
-            return f"{getSize(cls.swapMemo.free)}"
+            return f"{LengthValidator.getSize(cls.swapMemo.free)}"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -667,7 +646,7 @@ class RAMTools:
             float: _Used Swap Memory_
         """
         if (show is True):
-            return f"{getSize(cls.swapMemo.used)}"
+            return f"{LengthValidator.getSize(cls.swapMemo.used)}"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -684,7 +663,7 @@ class RAMTools:
             float: _Swap Percentage_
         """
         if (show is True):
-            return f"{getSize(cls.swapMemo.percent)}%"
+            return f"{LengthValidator.getSize(cls.swapMemo.percent)}%"
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -809,10 +788,10 @@ class DiskTools:
                     partitionUsage = psutil.disk_usage(partition.mountpoint)
                 except PermissionError:
                     continue
-                print(f"Total Size : {getSize(partitionUsage.total)}")
-                print(f"Used : {getSize(partitionUsage.used)}")
-                print(f"Free : {getSize(partitionUsage.free)}")
-                print(f"Percentage : {getSize(partitionUsage.percent)}\n")
+                print(f"Total Size : {LengthValidator.getSize(partitionUsage.total)}")
+                print(f"Used : {LengthValidator.getSize(partitionUsage.used)}")
+                print(f"Free : {LengthValidator.getSize(partitionUsage.free)}")
+                print(f"Percentage : {LengthValidator.getSize(partitionUsage.percent)}\n")
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
