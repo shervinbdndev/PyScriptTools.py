@@ -72,11 +72,6 @@ pip install PyScriptTools
 ```python
 py -m pip install PyScriptTools
 ```
-<h2 align='left'>or</h2>
-
-```python
-pip install -i https://test.pypi.org/simple/ PyScriptTools
-```
 
 <br><br><br>
 <h1 align='center'><b>Update Library</b></h1>
