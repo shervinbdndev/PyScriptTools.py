@@ -1,1 +1,7 @@
-import PyScriptTools.PyScriptTools
+from PyScriptTools.PyScriptTools import CPUTools
+from PyScriptTools.PyScriptTools import GPUTools
+from PyScriptTools.PyScriptTools import RAMTools
+from PyScriptTools.PyScriptTools import DiskTools
+from PyScriptTools.PyScriptTools import OtherTools
+from PyScriptTools.PyScriptTools import SystemTools
+from PyScriptTools.PyScriptTools import NetworkTools

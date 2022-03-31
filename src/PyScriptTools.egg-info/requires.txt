@@ -1,9 +1,0 @@
-GPUtil
-requests
-sockets
-colorama
-python-cfonts
-setuptools
-wheel
-getmac
-psutil
