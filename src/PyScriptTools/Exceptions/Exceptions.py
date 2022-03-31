@@ -10,6 +10,9 @@ class NoneTypeArgumentInt(Exception):
 class NoneTypeArgumentString(Exception):
     """ The Variable For Argument 'link' Should be 'String' Type """
     
+class InvalidVariableType(Exception):
+    """ The Variable Type Chosen is not The Correct One """
+    
 class UnrecognizeableTypeArgument(Exception):
     """ The Variable For Arguments is not Recognizeable """
     

@@ -21,7 +21,8 @@ try:
         NoneTypeArgumentString , 
         AdminPermissionRequestDenied , 
         UnrecognizeableTypeArgument ,
-        UndefinedOperatingSystem
+        UndefinedOperatingSystem ,
+        InvalidVariableType
     )
 
 except:
@@ -1012,7 +1013,7 @@ class SystemTools:
                 else:
                     return UndefinedOperatingSystem
             else:
-                return NoneTypeArgumentString
+                return InvalidVariableType
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -1074,8 +1075,8 @@ class OtherTools:
             str: _Customized Ascii Art_
         """
         if (show is True):
-            if (type(text) is Any):
-                cls.text = text
+            if (type(text) in [Any , str]):
+                cls.text = str(text)
                 cls.colors = colors
                 cls.align = align
                 cls.font = font
@@ -1108,7 +1109,7 @@ class OtherTools:
                 else:
                     return f"{colorama.ansi.Fore.RED}The Path Doesn't Exist\nThe Code Output is {colorama.ansi.Fore.BLUE}{False}"
             else:
-                return NoneTypeArgumentString
+                return InvalidVariableType
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
@@ -1128,7 +1129,7 @@ class OtherTools:
             if (type(string) is str):
                 return eval(string)
             else:
-                return NoneTypeArgumentString
+                return InvalidVariableType
         elif (show is False):
             return AdminPermissionRequestDenied
         else:
