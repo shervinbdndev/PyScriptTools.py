@@ -1040,6 +1040,7 @@ class SystemTools:
 class OtherTools:
     pathValidation = bool()
 
+    @classmethod
     def ConvertToAscii(cls , show : bool = False , text : Any = '' , colors : list = [] , align : Tuple[str] = "" , font : str = "") -> str:
         """_summary_
 
@@ -1071,6 +1072,7 @@ class OtherTools:
         else:
             return UnrecognizeableTypeArgument
 
+    @classmethod
     def IsPath(cls , show : bool = False , pathaddr : str = '') -> str:
         """_summary_
 
@@ -1093,7 +1095,8 @@ class OtherTools:
             return AdminPermissionRequestDenied
         else:
             return UnrecognizeableTypeArgument
-        
+
+    @classmethod
     def GetAbsOutput(cls , show : bool = False , string : str = '') -> str:
         """_summary_
 
@@ -1136,10 +1139,11 @@ class PrintHeaderClass:
             font = "slick"
         )
 
+    @property
     def HeaderPrint(self):
         return self.headerShow
 
 
 
 if (__name__ == "__main__" and platform.system()[0].upper() in ["W" , "L" , "J"]):
-    print(PrintHeaderClass().HeaderPrint())
+    print(PrintHeaderClass().HeaderPrint)
