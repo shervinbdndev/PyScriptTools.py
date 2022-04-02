@@ -17,7 +17,7 @@ try:
     import cfonts
     import random
     from typing import (Tuple , Any)
-    from Validators.Validators import (
+    from .Validators.Validators import (
         LengthValidator ,
         StringValidator ,
         IntegerValidator ,
@@ -25,7 +25,7 @@ try:
         LinuxOperatingSystemIdentifierValidator ,
         WindowsOperatingSystemIdentifierValidator
     )
-    from Exceptions.Exceptions import (
+    from .Exceptions.Exceptions import (
         NoneTypeArgumentInt ,
         NoneTypeArgumentString , 
         NoneTypeArgumentBool ,
