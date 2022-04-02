@@ -1,3 +1,36 @@
+class OperatingSystem(object):
+    WINDOWS : bool
+    LINUX : bool
+
+
+
+class WindowsOperatingSystemIdentifierValidator(OperatingSystem):
+    
+    @classmethod
+    def is_windows(cls , win):
+        import platform
+        
+        if (platform.system() == win):
+            cls.WINDOWS = True
+            cls.LINUX = False
+            return win
+
+
+
+
+class LinuxOperatingSystemIdentifierValidator(OperatingSystem):
+    
+    @classmethod
+    def is_linux(cls , lnx):
+        import platform
+        
+        if (platform.system() == lnx):
+            cls.LINUX = True
+            cls.WINDOWS = False
+            return lnx
+
+
+
 class LengthValidator:
     def getSize(bytes , default = "B"):
         for unit in ["" , "K" , "M" , "G" , "T" , "P"]:
@@ -24,7 +57,7 @@ class IntegerValidator:
             try:
                 return int(integer)
             except TypeError:
-                return ''
+                return 0
             
             
             
@@ -36,4 +69,4 @@ class BooleanValidator:
             try:
                 return bool(boolean)
             except TypeError:
-                return ''
+                return 0
