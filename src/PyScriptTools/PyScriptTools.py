@@ -179,10 +179,13 @@ class NetworkTools:
                     return f"{colorama.ansi.Fore.YELLOW}This Method Only Works on Windows OS !!!"
             elif (show is False):
                 return AdminPermissionRequestDenied
+            elif (show is None):
+                show = None
+                return AdminPermissionRequestDenied
             else:
                 return UnrecognizeableTypeArgument
         else:
-            return NoneTypeArgumentBool
+            return AdminPermissionRequestDenied
 
     @classmethod
     def TestConnection(cls , show : bool = False , timeout : int = 5):
