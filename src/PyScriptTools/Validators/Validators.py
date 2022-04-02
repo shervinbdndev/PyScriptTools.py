@@ -36,6 +36,14 @@ class LinuxOperatingSystemIdentifierValidator(OperatingSystem):
             cls.LINUX = True
             cls.WINDOWS = False
             return lnx
+        
+    @property
+    @classmethod
+    def current_is_linux(cls):
+        import platform
+        
+        if (platform.system()[0].upper() == 'L'):
+            cls.LINUX = True
 
 
 
