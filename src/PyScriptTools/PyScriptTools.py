@@ -168,7 +168,7 @@ class NetworkTools:
         """
         if (BooleanValidator.is_boolean(show)):
             if (show is True):
-                if (platform.system()[0].upper() == "W"):
+                if (WindowsOperatingSystemIdentifierValidator.current_is_windows):
                     for i in os.popen("netsh wlan show profiles"):
                         if ("All User Profile" in i):
                             i = str(i).split(":")

@@ -14,6 +14,14 @@ class WindowsOperatingSystemIdentifierValidator(OperatingSystem):
             cls.WINDOWS = True
             cls.LINUX = False
             return win
+        
+    @property
+    @classmethod
+    def current_is_windows(cls):
+        import platform
+        
+        if (platform.system()[0].upper() == 'W'):
+            cls.WINDOWS = True
 
 
 
