@@ -122,7 +122,7 @@ Args  |  Default Value  |  Details
 ------------- | ------------- | -------------
 show  |  False  |  Gets The Admin Permission To Return The Output(Set The Value to True)
 network_request  |  True  |  Uses Network Request to Get Mac Address(Set The Value to True)
-timeout  | 5 |  
+timeout  | 5 |  Send a Request Through Network in Time Per Second
 link  | '' |  Set The Value a Url in String Format
 
 <br>
