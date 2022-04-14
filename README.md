@@ -118,6 +118,17 @@ ShowSavedNetworks  |  show  | Shows a Bunch of Your Saved Networks
 TestConnection  |  show , timeout  | Test That your Connected To Internet
 StatusCodeChecker  |  show , link  | Check Every Status Codes on Every Urls You Want
 
+Args  |  Default Value  |  Details
+------------- | ------------- | -------------
+show  |  False  |  Gets The Admin Permission To Return The Output(Set The Value to True)
+network_request  |  True  |  Uses Network Request to Get Mac Address(Set The Value to True)
+timeout  | 5 |  
+link  | '' |  Set The Value a Url in String Format
+
+<br>
+
+# CPUTools
+
 <b>Print Your Public IP Address</b>
 
 ```python
