@@ -105,6 +105,9 @@ DiskTools  |  6
 SystemTools  |  11
 OtherTools  |  3
 
+Total Methods  |  51
+------------- | -------------
+
 <br>
 
 # NetworkTools
