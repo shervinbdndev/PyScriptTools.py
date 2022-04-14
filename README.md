@@ -95,7 +95,7 @@ py -m pip install --upgrade PyScriptTools
 
 <br>
 
-Class  |  Method Count
+Classes  |  Methods Count
 ------------- | -------------
 NetworkTools  | 7  
 CPUTools  |  8  
@@ -104,6 +104,19 @@ RAMTools  |  8
 DiskTools  |  6 
 SystemTools  |  11
 OtherTools  |  3
+
+<br>
+
+# NetworkTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ShowLocalIP  |  show  |  Shows Your Local IP Address
+ShowPublicIP  |  show  | Shows Your Public IP Address
+ShowMacAddress  |  show , network_request  | Shows Your Mac Address
+ShowNetworkInfo  |  show  | Shows Your Network Information
+ShowSavedNetworks  |  show  | Shows a Bunch of Your Saved Networks
+TestConnection  |  show , timeout  | Test That your Connected To Internet
+StatusCodeChecker  |  show , link  | Check Every Status Codes on Every Urls You Want
 
 <b>Print Your Public IP Address</b>
 
