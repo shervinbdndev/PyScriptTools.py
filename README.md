@@ -201,7 +201,7 @@ text  |  ''  |  Set Anything in a String  |  "Anything"
 colors  |  []  |  Use 2 colors for e.x ['green' , 'blue']  |  ['color1' , 'color2']
 align  |  ""  |  Align The Ascii Art You Want To Return  |  ("left") , ("center") , ("right")
 font  |  ""  | Set The Font You Want To Use in Your Ascii Art  |  ("console") , ("block") , ("simpleBlock") , ("simple") , ("3d") , ("simple3d") , ("chrome") , ("huge") , ("grid") , ("pallet") , ("shade") , ("slick") , ("tiny")
-pathaddr  |  ''  |  Gets The System Local Address And Validates Them  |  "C:\Users"
+pathaddr  |  ''  |  Gets The System Local Address And Validates It  |  "C:\Users"
 string  |  ''  |  Gets a Python Command Or an Expression And Returns The Answer Or Output  |  "print("Hello World!")" or "2+2"
 
 <br>
