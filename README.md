@@ -93,6 +93,18 @@ py -m pip install --upgrade PyScriptTools
 <br><br><br>
 <h1 align='center'><b>Usage</b></h1>
 
+<br>
+
+Class  |  Method Count
+------------- | -------------
+NetworkTools  | 7  
+CPUTools  |  8  
+GPUTools  |  8  
+RAMTools  |  8  
+DiskTools  |  6 
+SystemTools  |  11
+OtherTools  |  3
+
 <b>Print Your Public IP Address</b>
 
 ```python
