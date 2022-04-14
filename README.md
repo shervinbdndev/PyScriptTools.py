@@ -1,5 +1,5 @@
 <h1 align='center' style="font-size:5rem"><b>PyScriptTools</b></h1>
-<p align='center'><b>Version 4.2.2</b></p>
+<p align='center'><b>Version 4.2.3</b></p>
 <div align="center">
     <div align="center">
         <img src="https://img.shields.io/github/license/shervinbdndev/PyScriptTools.svg"></img>
@@ -110,13 +110,13 @@ OtherTools  |  3
 # NetworkTools
 Methods  |  Args  |  Efficiency
 ------------- | ------------- | -------------
-ShowLocalIP  |  show  |  Shows Your Local IP Address
-ShowPublicIP  |  show  | Shows Your Public IP Address
-ShowMacAddress  |  show , network_request  | Shows Your Mac Address
-ShowNetworkInfo  |  show  | Shows Your Network Information
-ShowSavedNetworks  |  show  | Shows a Bunch of Your Saved Networks
-TestConnection  |  show , timeout  | Test That your Connected To Internet
-StatusCodeChecker  |  show , link  | Check Every Status Codes on Every Urls You Want
+ShowLocalIP  |  show  |  Returns Local IP Address
+ShowPublicIP  |  show  | Returns Public IP Address
+ShowMacAddress  |  show , network_request  | Returns Mac Address
+ShowNetworkInfo  |  show  | Returns Network Information
+ShowSavedNetworks  |  show  | Returns a Bunch of Saved Networks
+TestConnection  |  show , timeout  | Tests That Connected To Internet
+StatusCodeChecker  |  show , link  | Checks Every Status Codes on Every Urls You Want
 
 # CPUTools
 Methods  |  Args  |  Efficiency
@@ -130,16 +130,79 @@ ShowCPUCurrentFreq  |  show  |  Returns CPU Current Frequency
 ShowCPUTotalUsage  |  show  |  Returns CPU Total Usage
 ShowCPUUsagePerCore  |  show  |  Returns CPU Usage Per Cores
 
+# GPUTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ShowGPU_ID  |  show  |  Returns GPU ID
+ShowGPUName  |  show  |  Returns GPU Name
+ShowGPULoad  |  show  |  Returns GPU Load
+ShowGPUFreeMemory  |  show  |  Returns GPU Free Memory
+ShowGPUUsedMemory  |  show  |  Returns GPU Used Memory
+ShowGPUTotalMemory  |  show  |  Returns GPU Total Memory
+ShowGPUTemperature  |  show  |  Returns GPU Temperature
+ShowGPU_UUID  |  show  |  Returns GPU UUID
+
+# RAMTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ShowTotalRAM  |  show  |  Returns Total RAM Memory
+ShowAvailableRAM  |  show  |  Returns Available RAM Memory
+ShowUsedRAM  |  show  |  Returns Used RAM Memory
+ShowRAMPercentage  |  show  |  Returns RAM Percentage
+ShowTotalSwap  |  show  |  Returns Total Swap Memory
+ShowFreeSwap  |  show  |  Returns Free Swap Memory
+ShowUsedSwap  |  show  |  Returns Used Swap Memory
+ShowSwapPercentage  |  show  |  Returns Swap Percentage
+
+# DiskTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ShowDrives  |  show  |  Returns Available Drives
+ShowParentDiskTotalMemory  |  show  |  Returns Parent Disk Total Memory
+ShowParentDiskUsedMemory  |  show  |  Returns Parent Disk Used Memory
+ShowParentDiskFreeMemory  |  show  |  Returns Parent Disk Free Memory
+ShowParentDiskPercentage  |  show  |  Returns Parent Disk Percentage
+ShowDiskInfo  |  show  |  Returns a Bunch Of Disk Information
+
+# SystemTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ShowOsName  |  show  |  Returns Current Operating System's Name
+ShowOsType  |  show  |  Returns Operating System's Type
+ShowNodeName  |  show  |  Returns Node Name
+ShowOSRelease  |  show  |  Returns Operating System's Release Date
+ShowOSVersion  |  show  |  Returns Operating System's Version
+ShowSystemName  |  show  |  Returns System's Name
+ShowSystemUptime  |  show  |  Returns System's Uptime
+ShowUserName  |  show  |  Returns Current Logined Username
+ShowSystemInformation  |  show , os_name  |  Returns  a Bunch of System Information
+ShowPythonVersion  |  show  |  Returns Current Installed Python Version
+ShowBootTime  |  show  |  Returns System's Uptime
+
+# OtherTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ConvertToAscii  |  show , text , colors , align , font  |  Convert Text To Ascii
+IsPath  |  show , pathaddr  |  Validates The System's Path
+GetAbsOutput  |  show , string  |  Runs The Text as a Python Command or Expression
+
 <br>
 
 <h1 align='left'>Args Details</h1>
 
-Args  |  Default Value  |  Details
-------------- | ------------- | -------------
-show  |  False  |  Gets The Admin Permission To Return The Output(Set The Value to True)
-network_request  |  True  |  Uses Network Request to Get Mac Address(Set The Value to True)
-timeout  | 5 |  Send a Request Through Network in Time Per Second
-link  | '' |  Set The Value a Url in String Format
+Args  |  Default Value  |  Details  |  Values
+------------- | ------------- | ------------- | -------------
+show  |  False  |  Gets The Admin Permission To Return The Output  |  True , False
+network_request  |  True  |  Uses Network Request to Get Mac Address  |  True , False
+timeout  | 5 |  Send a Request Through Network in Time Per Second  |  1 to ...
+link  | '' |  Set The Value a Url in String Format  |  "https://www.google.com/"
+os_name  |  "Windows"  |  Set The Name of Your Operating System  |  "Windows" , "Linux"
+text  |  ''  |  Set Anything in a String  |  "Anything"
+colors  |  []  |  Use 2 colors for e.x ['green' , 'blue']  |  ['color1' , 'color2']
+align  |  ""  |  Align The Ascii Art You Want To Return  |  ("left") , ("center") , ("right")
+font  |  ""  | Set The Font You Want To Use in Your Ascii Art  |  ("console") , ("block") , ("simpleBlock") , ("simple") , ("3d") , ("simple3d") , ("chrome") , ("huge") , ("grid") , ("pallet") , ("shade") , ("slick") , ("tiny")
+pathaddr  |  ''  |  Gets The System Local Address And Validates Them  |  "C:\Users"
+string  |  ''  |  Gets a Python Command Or an Expression And Returns The Answer Or Output  |  "print("Hello World!")" or "2+2"
 
 <br>
 
