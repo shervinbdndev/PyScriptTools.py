@@ -118,6 +118,18 @@ ShowSavedNetworks  |  show  | Shows a Bunch of Your Saved Networks
 TestConnection  |  show , timeout  | Test That your Connected To Internet
 StatusCodeChecker  |  show , link  | Check Every Status Codes on Every Urls You Want
 
+# CPUTools
+Methods  |  Args  |  Efficiency
+------------- | ------------- | -------------
+ShowCPUType  |  show  |  Returns CPU Type
+ShowCPUPhysicalCores  |  show  |  Returns CPU Physical Cores
+ShowCPUTotalCores  |  show  |  Returns CPU Total Cores
+ShowCPUMaxFreq  |  show  |  Returns CPU Maximum Frequency
+ShowCPUMinFreq  |  show  |  Returns CPU Minimum Frequency
+ShowCPUCurrentFreq  |  show  |  Returns CPU Current Frequency
+ShowCPUTotalUsage  |  show  |  Returns CPU Total Usage
+ShowCPUUsagePerCore  |  show  |  Returns CPU Usage Per Cores
+
 <br>
 
 <h1 align='left'>Args Details</h1>
@@ -130,8 +142,6 @@ timeout  | 5 |  Send a Request Through Network in Time Per Second
 link  | '' |  Set The Value a Url in String Format
 
 <br>
-
-# CPUTools
 
 <b>Print Your Public IP Address</b>
 
