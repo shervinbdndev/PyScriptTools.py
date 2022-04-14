@@ -112,8 +112,6 @@ class PSTValidators:
     class LinuxOperatingSystemIdentifierValidator(OperatingSystem):
         @classmethod
         def is_linux(cls , lnx):
-            import platform
-            
             if (platform.system() == lnx):
                 cls.LINUX = True
                 cls.WINDOWS = False
@@ -122,8 +120,6 @@ class PSTValidators:
         @property
         @classmethod
         def current_is_linux(cls):
-            import platform
-            
             if (platform.system()[0].upper() == 'L'):
                 cls.LINUX = True
                 
@@ -131,8 +127,6 @@ class PSTValidators:
     
         @classmethod
         def is_windows(cls , win):
-            import platform
-            
             if (platform.system() == win):
                 cls.WINDOWS = True
                 cls.LINUX = False
@@ -141,8 +135,6 @@ class PSTValidators:
         @property
         @classmethod
         def current_is_windows(cls):
-            import platform
-            
             if (platform.system()[0].upper() == 'W'):
                 cls.WINDOWS = True
 
