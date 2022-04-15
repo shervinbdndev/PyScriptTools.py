@@ -1,0 +1,15 @@
+GPUtil
+requests
+sockets
+colorama
+python-cfonts
+setuptools
+wheel
+getmac
+psutil
+
+[dev]
+check-manifest
+
+[test]
+coverage

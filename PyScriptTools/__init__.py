@@ -38,8 +38,9 @@ except:
 
 
 class Version:
-    with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as v:
-        __version__ = v.readline()
+    """with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as v:
+        __version__ = v.readline()"""
+    __version__ = '4.2.5'
 
 
 
@@ -1342,7 +1343,7 @@ class OtherTools:
             else:
                 return PSTExceptions.UnrecognizeableTypeArgument
         else:
-            return PSTExceptions.NoneTypeArgumentBool    
+            return PSTExceptions.NoneTypeArgumentBool
         
     @classmethod
     def GetAbsOutput(cls , show : bool = False , string : str = '') -> str:
