@@ -8,7 +8,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
-VERSION = '4.2.5'
+VERSION = '4.2.7'
 DESCRIPTION = 'Simple Python Package to Gather and Show Your System Info.'
 LONG_DESCRIPTION = 'A package that allows you to Gather and Collect all of Your System Information by Calling Only methods.'
 
