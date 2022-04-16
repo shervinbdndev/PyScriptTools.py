@@ -55,9 +55,15 @@ except:
 
 
 class MetaData:
-    """with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as v:
-        __version__ = v.readline()"""
-    __version__ = '4.2.7'
+    def __init__(self) -> None:
+        super(MetaData , self).__init__()
+        
+        self.version = r"4.2.7"
+        """with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as temp:
+            self.version = temp.readline()"""
+                
+    def __str__(self) -> str:
+        return self.version
 
 
 
