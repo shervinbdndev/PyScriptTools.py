@@ -1,5 +1,5 @@
 class AdminPermissionRequestDenied(Exception):
-        """ Set the Argument Variable 'show' to 'True' """
+    """ Set the Argument Variable 'show' to 'True' """
 class NoneTypeArgumentBool(Exception):
     """ The Variable For Argument 'show' Should be 'Boolean' Type """
 class NoneTypeArgumentInt(Exception):
