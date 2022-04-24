@@ -64,7 +64,7 @@ class MetaData:
     def __init__(self) -> None:
         super(MetaData , self).__init__()
         
-        self.version = r"4.2.8"
+        self.version = r"4.2.9"
         """with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as temp:
             self.version = temp.readline()"""
                 
@@ -954,12 +954,15 @@ class SystemTools:
     osName = str(platform.system())
     osType = list(platform.architecture())[0]
     systemName = str(platform.node())
-    getKernel32 = ctypes.windll.kernel32.GetTickCount64()
-    getTime = int(str(getKernel32)[:-3])
-    mins, sec = divmod(getTime, 60)
-    hour, mins = divmod(mins, 60)
-    days, hour = divmod(hour, 24)
-    uptimeSystem = str("{0}:{1}:{2}:{3}").format(days , hour , mins , sec)
+    try:
+        getKernel32 = ctypes.windll.kernel32.GetTickCount64()
+        getTime = int(str(getKernel32)[:-3])
+        mins, sec = divmod(getTime, 60)
+        hour, mins = divmod(mins, 60)
+        days, hour = divmod(hour, 24)
+        uptimeSystem = str("{0}:{1}:{2}:{3}").format(days , hour , mins , sec)
+    except:
+        getKernel32 = str(NoneLinuxMethod);getTime = str(NoneLinuxMethod);mins=str(NoneLinuxMethod);sec=str(NoneLinuxMethod);hour=str(NoneLinuxMethod);days=str(NoneLinuxMethod);uptimeSystem=str(NoneLinuxMethod)
     userName = getpass.getuser()
     listSysInfo = []
     pythonVer = sys.version[0:6]
@@ -1159,7 +1162,6 @@ class SystemTools:
                             f"\n{colorama.ansi.Fore.GREEN}OS Release : {colorama.ansi.Fore.WHITE}{cls.sysRelease}" ,
                             f"\n{colorama.ansi.Fore.GREEN}OS Version : {colorama.ansi.Fore.WHITE}{cls.sysVersion}" ,
                             f"\n{colorama.ansi.Fore.GREEN}System Name : {colorama.ansi.Fore.WHITE}{cls.systemName or cls.nodeName}" ,
-                            f"\n{colorama.ansi.Fore.GREEN}System Uptime : {colorama.ansi.Fore.WHITE}{cls.uptimeSystem}" ,
                             f"\n{colorama.ansi.Fore.GREEN}User Logined As : {colorama.ansi.Fore.WHITE}{cls.userName}"
                         )
                     else:
