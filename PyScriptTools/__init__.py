@@ -1,4 +1,9 @@
 try:
+    """
+    from __future__ import absolute_import
+    from __future__ import print_function
+    from __future__ import all_feature_names
+    """
     """import io"""
     import os
     import sys
@@ -21,6 +26,7 @@ try:
     from .exceptions import (
         AdminPermissionRequestDenied ,
         InvalidVariableType ,
+        NoneLinuxMethod ,
         NoneTypeArgumentBool ,
         NoneTypeArgumentInt ,
         NoneTypeArgumentString ,
@@ -58,7 +64,7 @@ class MetaData:
     def __init__(self) -> None:
         super(MetaData , self).__init__()
         
-        self.version = r"4.2.7"
+        self.version = r"4.2.8"
         """with io.open(file=os.path.join(os.path.abspath('.') , 'version.txt') , mode='r+' , encoding='utf-8' , errors=None) as temp:
             self.version = temp.readline()"""
                 
@@ -794,7 +800,10 @@ class RAMTools:
 
 class DiskTools:
     listDrives = []
-    bitMask = ctypes.windll.kernel32.GetLogicalDrives()
+    try:
+        bitMask = ctypes.windll.kernel32.GetLogicalDrives()
+    except:
+        bitMask = str(NoneLinuxMethod)
     drivesInfo = psutil.disk_partitions()
     parentDiskInfo = psutil.disk_usage(path='/')
 
@@ -809,16 +818,19 @@ class DiskTools:
             list: _List Of All Available Drives_
         """
         if (BooleanValidator.is_boolean(show)):
-            if (show is True):
-                for driver in string.ascii_uppercase:
-                    if (cls.bitMask & 1) :
-                        cls.listDrives.append(driver)
-                    cls.bitMask >>= 1
-                return cls.listDrives
-            elif (show is False):
-                return AdminPermissionRequestDenied
+            if (platform.system()[0].upper() == 'W'):
+                if (show is True):
+                    for driver in string.ascii_uppercase:
+                        if (cls.bitMask & 1) :
+                            cls.listDrives.append(driver)
+                        cls.bitMask >>= 1
+                    return cls.listDrives
+                elif (show is False):
+                    return AdminPermissionRequestDenied
+                else:
+                    return UnrecognizeableTypeArgument
             else:
-                return UnrecognizeableTypeArgument
+                return NoneLinuxMethod
         else:
             return NoneTypeArgumentBool
 

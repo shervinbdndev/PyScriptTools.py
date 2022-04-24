@@ -6,6 +6,8 @@ class NoneTypeArgumentInt(Exception):
     """ The Variable For Argument 'timeout' Should be 'Int' Type """
 class NoneTypeArgumentString(Exception):
     """ The Variable For Argument 'link' Should be 'String' Type """
+class NoneLinuxMethod(Exception):
+    """ This Method is not Used in Linux OS """
 class UndefinedOperatingSystem(Exception):
     """ The Operating System is Not Defined Yet """
 class UnrecognizeableTypeArgument(Exception):
