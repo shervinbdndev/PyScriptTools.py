@@ -27,7 +27,7 @@
 
     PyScriptTools Library
     =====================
-    version : 4.3.2\n
+    version : 4.3.3\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/\n
@@ -73,6 +73,9 @@ try:
         AdminPermissionRequestDenied ,
         InvalidVariableType ,
         NoneLinuxMethod ,
+        WorksOnlyOnWindows ,
+        NotNullableArgument ,
+        NoneSelectedNetwork ,
         NoneTypeArgumentBool ,
         NoneTypeArgumentInt ,
         NoneTypeArgumentString ,
@@ -117,6 +120,9 @@ class NetworkTools:
                 return cls.localIP
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -140,6 +146,9 @@ class NetworkTools:
                     pass
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -156,7 +165,7 @@ class NetworkTools:
         Returns:
             str: _MAC Address_
         """
-        if (type([show , network_request]) is bool):
+        if (type(show) is bool and type(network_request) is bool):
             if (show is True):
                 try:
                     return getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = network_request)
@@ -164,6 +173,9 @@ class NetworkTools:
                     pass
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -194,6 +206,9 @@ class NetworkTools:
                             print(f"Broadcast MAC : {address.broadcast}")
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -219,9 +234,44 @@ class NetworkTools:
                             print(i)
                             continue
                 else:
-                    return f"{colorama.ansi.Fore.YELLOW}This Method Only Works on Windows OS !!!"
+                    return WorksOnlyOnWindows.__doc__
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return AdminPermissionRequestDenied.__doc__
+        
+    @classmethod
+    def ShowSavedNetworkWithPassword(cls , show : bool = False , network_name : str = '') -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _Shows Saved Networks_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                if (WindowsOperatingSystemIdentifierValidator.current_is_windows):
+                    for i in os.popen(f'netsh wlan show profile name="{network_name}" key=clear'):
+                        if ("Key Content" in i):
+                            i = str(i).split(":")
+                            i = f"{colorama.ansi.Fore.MAGENTA}Network Name : {colorama.ansi.Fore.GREEN} {network_name} {colorama.ansi.Fore.WHITE}--- {colorama.ansi.Fore.MAGENTA}Password : {colorama.ansi.Fore.GREEN} {i[1].strip()}"
+                            return i
+                        else:
+                            return NoneSelectedNetwork.__doc__
+                else:
+                    return WorksOnlyOnWindows.__doc__
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             elif (show is None):
                 show = None
                 return AdminPermissionRequestDenied.__doc__
@@ -253,6 +303,9 @@ class NetworkTools:
                     return NoneTypeArgumentInt
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -281,6 +334,9 @@ class NetworkTools:
                     return NoneTypeArgumentString
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -312,6 +368,9 @@ class CPUTools:
                 return cls.cpuType
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -332,6 +391,9 @@ class CPUTools:
                 return cls.phCores
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -352,6 +414,9 @@ class CPUTools:
                 return cls.totCores
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -372,6 +437,9 @@ class CPUTools:
                 return f"{cls.cpuFreq.max:.2f}Mhz"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -392,6 +460,9 @@ class CPUTools:
                 return f"{cls.cpuFreq.min:.2f}Mhz"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -412,6 +483,9 @@ class CPUTools:
                 return f"{cls.cpuFreq.current:.2f}Mhz"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -432,6 +506,9 @@ class CPUTools:
                 return f"{psutil.cpu_percent()}%"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -453,6 +530,9 @@ class CPUTools:
                     print(f"Core {core} : {percentage}%")
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -483,6 +563,9 @@ class GPUTools:
                 return gpuID
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -505,6 +588,9 @@ class GPUTools:
                 return gpuName
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -532,6 +618,9 @@ class GPUTools:
                         return newGpu
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -554,6 +643,9 @@ class GPUTools:
                 return gpuFree
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -576,6 +668,9 @@ class GPUTools:
                 return gpuUsed
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -598,6 +693,9 @@ class GPUTools:
                 return gpuTot
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -620,6 +718,9 @@ class GPUTools:
                 return gpuTemp
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -642,6 +743,9 @@ class GPUTools:
                 return gpuUUID
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -670,6 +774,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.ramVir.total)}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -690,6 +797,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.ramVir.available)}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -710,6 +820,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.ramVir.used)}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -730,6 +843,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.ramVir.percent)}%"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -750,6 +866,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.swapMemo.total)}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -770,6 +889,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.swapMemo.free)}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -790,6 +912,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.swapMemo.used)}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -810,6 +935,9 @@ class RAMTools:
                 return f"{LengthValidator.getSize(cls.swapMemo.percent)}%"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -825,7 +953,7 @@ class DiskTools:
     try:
         bitMask = ctypes.windll.kernel32.GetLogicalDrives()
     except:
-        bitMask = str(NoneLinuxMethod)
+        bitMask = str(NoneLinuxMethod.__doc__)
     drivesInfo = psutil.disk_partitions()
     parentDiskInfo = psutil.disk_usage(path='/')
 
@@ -849,6 +977,9 @@ class DiskTools:
                     return cls.listDrives
                 elif (show is False):
                     return AdminPermissionRequestDenied.__doc__
+                elif (show is None):
+                    show = None
+                    return NotNullableArgument.__doc__
                 else:
                     return UnrecognizeableTypeArgument.__doc__
             else:
@@ -871,6 +1002,9 @@ class DiskTools:
                 return cls.parentDiskInfo.total / 1024 ** 3
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -891,6 +1025,9 @@ class DiskTools:
                 return cls.parentDiskInfo.used / 1024 ** 3
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -911,6 +1048,9 @@ class DiskTools:
                 return cls.parentDiskInfo.free / 1024 ** 3
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -931,6 +1071,9 @@ class DiskTools:
                 return f"{cls.parentDiskInfo.percent:.2f}"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -962,6 +1105,9 @@ class DiskTools:
                     print(f"Percentage : {LengthValidator.getSize(partitionUsage.percent)}\n")
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -984,7 +1130,13 @@ class SystemTools:
         days, hour = divmod(hour, 24)
         uptimeSystem = str("{0}:{1}:{2}:{3}").format(days , hour , mins , sec)
     except:
-        getKernel32 = str(NoneLinuxMethod);getTime = str(NoneLinuxMethod);mins=str(NoneLinuxMethod);sec=str(NoneLinuxMethod);hour=str(NoneLinuxMethod);days=str(NoneLinuxMethod);uptimeSystem=str(NoneLinuxMethod)
+        getKernel32 = str(NoneLinuxMethod.__doc__);\
+        getTime = str(NoneLinuxMethod.__doc__);\
+        mins=str(NoneLinuxMethod.__doc__);\
+        sec=str(NoneLinuxMethod.__doc__);\
+        hour=str(NoneLinuxMethod.__doc__);\
+        days=str(NoneLinuxMethod.__doc__);\
+        uptimeSystem=str(NoneLinuxMethod.__doc__)
     userName = getpass.getuser()
     listSysInfo = []
     pythonVer = sys.version[0:6]
@@ -1008,6 +1160,9 @@ class SystemTools:
                 return cls.osName
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1028,6 +1183,9 @@ class SystemTools:
                 return cls.osType
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1048,6 +1206,9 @@ class SystemTools:
                 return cls.nodeName
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1068,6 +1229,9 @@ class SystemTools:
                 return cls.sysRelease
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1088,6 +1252,9 @@ class SystemTools:
                 return cls.sysVersion
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1108,6 +1275,9 @@ class SystemTools:
                 return cls.systemName
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1128,6 +1298,9 @@ class SystemTools:
                 return cls.uptimeSystem
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1148,6 +1321,9 @@ class SystemTools:
                 return cls.userName
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1192,6 +1368,9 @@ class SystemTools:
                     return InvalidVariableType
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 UnrecognizeableTypeArgument
         else:
@@ -1212,6 +1391,9 @@ class SystemTools:
                 return cls.pythonVer
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1232,6 +1414,9 @@ class SystemTools:
                 return cls.bootTime
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1275,6 +1460,9 @@ class OtherTools:
                     return cls.configuration
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1302,6 +1490,9 @@ class OtherTools:
                     return InvalidVariableType
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:
@@ -1326,6 +1517,9 @@ class OtherTools:
                     return InvalidVariableType
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:

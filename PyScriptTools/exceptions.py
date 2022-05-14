@@ -24,7 +24,7 @@
 
     PyScriptTools Exceptions
     ========================
-    version : 4.3.2\n
+    version : 4.3.3\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -51,6 +51,12 @@ class NoneTypeArgumentInt(Exception):
     """The Variable For Argument 'timeout' Should be 'Int' Type """
 class NoneTypeArgumentString(Exception):
     """The Variable For Argument 'link' Should be 'String' Type """
+class NoneSelectedNetwork(Exception):
+    """Network Name Not Available """
+class WorksOnlyOnWindows(Exception):
+    """This Method Only Works on Windows OS"""
+class NotNullableArgument(Exception):
+    """This Argument Cannot Be Nullable (Switch the value from None to another value) """
 class NoneLinuxMethod(Exception):
     """This Method is not Used in Linux OS """
 class UndefinedOperatingSystem(Exception):
