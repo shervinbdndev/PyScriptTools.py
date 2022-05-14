@@ -24,7 +24,7 @@
 
     PyScriptTools Validators
     ========================
-    version : 4.3.1\n
+    version : 4.3.2\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -63,15 +63,15 @@ class StringValidator:
         else:
             return str(string)
     
-class BooleanValidator:
+"""class BooleanValidator:
     def is_boolean(boolean):
-        if (type(boolean) is bool):
+        if (boolean in [True , False]):
             return boolean
         else:
             try:
                 return bool(boolean)
             except TypeError:
-                return 0
+                return 0"""
 
 class IntegerValidator:
     def is_integer(integer):

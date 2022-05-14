@@ -24,7 +24,7 @@
 
     PyScriptTools Exceptions
     ========================
-    version : 4.3.1\n
+    version : 4.3.2\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -44,18 +44,18 @@
 
 
 class AdminPermissionRequestDenied(Exception):
-    """ Set the Argument Variable 'show' to 'True' """
+    """Admin Permission Denied Set the Argument Variable 'show' to 'True' """
 class NoneTypeArgumentBool(Exception):
-    """ The Variable For Argument 'show' Should be 'Boolean' Type """
+    """The Variable For Argument 'show' Should be 'Boolean' Type """
 class NoneTypeArgumentInt(Exception):
-    """ The Variable For Argument 'timeout' Should be 'Int' Type """
+    """The Variable For Argument 'timeout' Should be 'Int' Type """
 class NoneTypeArgumentString(Exception):
-    """ The Variable For Argument 'link' Should be 'String' Type """
+    """The Variable For Argument 'link' Should be 'String' Type """
 class NoneLinuxMethod(Exception):
-    """ This Method is not Used in Linux OS """
+    """This Method is not Used in Linux OS """
 class UndefinedOperatingSystem(Exception):
-    """ The Operating System is Not Defined Yet """
+    """The Operating System is Not Defined Yet """
 class UnrecognizeableTypeArgument(Exception):
-    """ The Variable For Arguments is not Recognizeable """
+    """The Variable For Arguments is not Recognizeable """
 class InvalidVariableType(Exception):
-    """ The Variable Type Chosen is not The Correct One """
+    """The Variable Type Chosen is not The Correct One """
