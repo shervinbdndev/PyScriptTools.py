@@ -27,7 +27,7 @@
 
     PyScriptTools Library
     =====================
-    version : 4.3.3\n
+    version : 4.3.4\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/\n
@@ -272,9 +272,6 @@ class NetworkTools:
             elif (show is None):
                 show = None
                 return NotNullableArgument.__doc__
-            elif (show is None):
-                show = None
-                return AdminPermissionRequestDenied.__doc__
             else:
                 return UnrecognizeableTypeArgument.__doc__
         else:

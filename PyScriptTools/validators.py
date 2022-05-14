@@ -24,7 +24,7 @@
 
     PyScriptTools Validators
     ========================
-    version : 4.3.3\n
+    version : 4.3.4\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
