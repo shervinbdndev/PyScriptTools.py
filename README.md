@@ -197,7 +197,7 @@ GetAbsOutput  |  show , string  |  Runs The Text as a Python Command or Expressi
 Args  |  Default Value  |  Details  |  Values
 ------------- | ------------- | ------------- | -------------
 show  |  False  |  Gets The Admin Permission To Return The Output  |  True , False
-network_name  |  ''  |  Set The Value A Name of Your Saved Networks 
+network_name  |  ''  |  Set The Value A Name of Your Saved Networks  |  The name of your Network
 network_request  |  True  |  Uses Network Request to Get Mac Address  |  True , False
 timeout  | 5 |  Send a Request Through Network in Time Per Second  |  1 to ...
 link  | '' |  Set The Value a Url in String Format  |  "https://www.google.com/"
