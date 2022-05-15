@@ -215,7 +215,7 @@ string  |  ''  |  Gets a Python Command Or an Expression And Returns The Answer 
 <b>Print Your Public IP Address</b>
 
 ```python
-from PyScriptTools import NetworkTools
+from PyScriptTools.tools import NetworkTools
 
 network_obj = NetworkTools()
 public_ip = network_obj.ShowPublicIP(show=True)
@@ -232,7 +232,7 @@ print(public_ip)
 <b>Also You Can Print Your Public IP To asccii Art !!!</b>
 
 ```python
-from PyScriptTools import (NetworkTools , OtherTools)
+from PyScriptTools.tools import (NetworkTools , OtherTools)
 
 network_obj = NetworkTools()
 ascii_obj = OtherTools()
@@ -259,7 +259,7 @@ print(ascii_obj.ConvertToAscii(show=True , text=network_obj.ShowPublicIP(show=Tr
 <b>Wanna See Your CPU Information?</b>
 
 ```python
-from PyScriptTools import CPUTools
+from PyScriptTools.tools import CPUTools
 
 cpu_obj = CPUTools()
 
@@ -299,7 +299,7 @@ Core 11 : 1.5%
 </b>How About GPU Information?</b>
 
 ```python
-from PyScriptTools import GPUTools
+from PyScriptTools.tools import GPUTools
 
 gpu_obj = GPUTools()
 
@@ -331,7 +331,7 @@ GPU-fbe80806-8a49-abk8-ab8c-509d65993cb9
 <b>If You Want To See Your RAM Status Use These Codes Below</b>
 
 ```python
-from PyScriptTools import RAMTools
+from PyScriptTools.tools import RAMTools
 
 ram_obj = RAMTools()
 
@@ -361,7 +361,7 @@ print(ram_obj.ShowSwapPercentage(show=True))
 <b>And Many Many Methods That You Can Use To See Your System Information Like</b>
 
 ```python
-from PyScriptTools import SystemTools
+from PyScriptTools.tools import SystemTools
 
 system_obj = SystemTools()
 

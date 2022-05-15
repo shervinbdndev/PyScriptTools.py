@@ -24,7 +24,7 @@
 
     base
     ====
-    version : 4.3.6\n
+    version : 4.3.7\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -42,7 +42,7 @@ __doc__ = """
     
     PyScriptTools is a Python Based Library That You Can Use it To Gather your System Information.\n
     for e.x You Can Print Your Public IP Address:\n
-        >>> from PyScriptTools import NetworkTools
+        >>> from PyScriptTools.tools import NetworkTools
         
         >>> network_obj = NetworkTools()
         >>> public_ip = network_obj.ShowPublicIP(show=True)

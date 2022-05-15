@@ -34,7 +34,7 @@
     
     PyScriptTools is a Python Based Library That You Can Use it To Gather your System Information.\n
     for e.x You Can Print Your Public IP Address:\n
-        >>> from PyScriptTools import NetworkTools
+        >>> from PyScriptTools.tools import NetworkTools
         
         >>> network_obj = NetworkTools()
         >>> public_ip = network_obj.ShowPublicIP(show=True)
