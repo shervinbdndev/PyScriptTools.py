@@ -24,7 +24,7 @@
 
     base
     ====
-    version : 4.3.7\n
+    version : 4.3.8\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -35,7 +35,7 @@ __doc__ = """
 
     PyScriptTools Library
     =====================
-    version : 4.3.6\n
+    version : 4.3.8\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/\n
@@ -50,5 +50,5 @@ __doc__ = """
     
 """
 
-__version__ = '4.3.5'
+__version__ = '4.3.8'
 __author__ = 'Shervin Badanara (shervinbdndev)'
