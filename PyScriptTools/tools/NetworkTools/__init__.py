@@ -22,9 +22,9 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-    GPUTools
-    ========
-    version : 4.3.5\n
+    NetworkTools
+    ============
+    version : 4.3.6\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -33,33 +33,41 @@
 
 
 try:
-    import GPUtil
+    import os
+    import socket
+    import requests
+    import json
+    import psutil
+    import getmac
     import colorama
+    import platform
     
-    from .exceptions import *
+    from ...exceptions import *
 
 except:
     raise ModuleNotFoundError
 
 
-class GPUTools:
-    gpuInfo = GPUtil.getGPUs()
-
+class NetworkTools:
+    localIP = str(socket.gethostbyname(socket.gethostname()))
+    publicIPLoader = requests.get('https://api.myip.com').content
+    loadedIP = json.loads(publicIPLoader)
+    publicIP = str(loadedIP['ip'])
+    ipAddrs =  psutil.net_if_addrs()
+    
     @classmethod
-    def ShowGPU_ID(cls , show : bool = False) -> str:
+    def ShowLocalIP(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            str: _GPU ID_
+            str: _Local IP_
         """
         if (type(show) is bool):
             if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuID = gpu.id
-                return gpuID
+                return cls.localIP
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -71,20 +79,21 @@ class GPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowGPUName(cls , show : bool = False) -> str:
+    def ShowPublicIP(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            str: _GPU Name_
+            str: _Public IP_
         """
         if (type(show) is bool):
             if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuName = gpu.name
-                return gpuName
+                try:
+                    return cls.publicIP
+                except ConnectionError:
+                    pass
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -96,25 +105,22 @@ class GPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowGPULoad(cls , show : bool = False) -> float:
+    def ShowMacAddress(cls , show : bool = False , network_request : bool = True) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
+            network_request (bool): _Use Internet To get MacAddress(better to use True)_. Defaults to True.
 
         Returns:
-            float: _GPU Load_
+            str: _MAC Address_
         """
-        if (type(show) is bool):
+        if (type(show) is bool and type(network_request) is bool):
             if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuLoad = gpu.load * 100
-                    if (gpuLoad > 50.0):
-                        newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                        return newGpu
-                    else:
-                        newGpu = f"{colorama.ansi.Fore.GREEN}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
-                        return newGpu
+                try:
+                    return getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = network_request)
+                except ConnectionError:
+                    pass
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -126,20 +132,28 @@ class GPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowGPUFreeMemory(cls , show : bool = False) -> float:
+    def ShowNetworkInfo(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _GPU Free Memory_
+            str: _Shows Some of Your Network Information_
         """
         if (type(show) is bool):
             if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuFree = gpu.memoryFree
-                return gpuFree
+                for interfaceName , interfaceAddresses in cls.ipAddrs.items():
+                    for address in interfaceAddresses:
+                        print(f"{colorama.ansi.Fore.GREEN}=== Interface :{colorama.ansi.Fore.MAGENTA} {interfaceName} {colorama.ansi.Fore.GREEN}===")
+                        if (str(address.family) == "AddressFamily.AF_INET"):
+                            print(f"{colorama.ansi.Fore.WHITE}IP Address : {address.address}")
+                            print(f"Netmask : {address.netmask}")
+                            print(f"Broadcast IP : {address.broadcast}")
+                        elif (str(address.family) == "AddressFamily.AF_PACKET"):
+                            print(f"Mac Address : {address.address}")
+                            print(f"Netmask : {address.netmask}")
+                            print(f"Broadcast MAC : {address.broadcast}")
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -151,20 +165,89 @@ class GPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowGPUUsedMemory(cls , show : bool = False) -> float:
+    def ShowSavedNetworks(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _GPU Used Memory_
+            str: _Shows Saved Networks_
         """
         if (type(show) is bool):
             if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuUsed = f"{gpu.memoryUsed}MB"
-                return gpuUsed
+                if (platform.system()[0].upper() == 'W'):
+                    for i in os.popen("netsh wlan show profiles"):
+                        if ("All User Profile" in i):
+                            i = str(i).split(":")
+                            i = f"{colorama.ansi.Fore.GREEN}Network Name : {colorama.ansi.Fore.MAGENTA} {i[1].strip()}"
+                            print(i)
+                            continue
+                else:
+                    return WorksOnlyOnWindows.__doc__
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return AdminPermissionRequestDenied.__doc__
+        
+    @classmethod
+    def ShowSavedNetworkWithPassword(cls , show : bool = False , network_name : str = '') -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _Shows Saved Networks_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                if (platform.system()[0].upper() == 'W'):
+                    for i in os.popen(f'netsh wlan show profile name="{network_name}" key=clear'):
+                        if ("Key Content" in i):
+                            i = str(i).split(":")
+                            i = f"{colorama.ansi.Fore.MAGENTA}Network Name : {colorama.ansi.Fore.GREEN} {network_name} {colorama.ansi.Fore.WHITE}--- {colorama.ansi.Fore.MAGENTA}Password : {colorama.ansi.Fore.GREEN} {i[1].strip()}"
+                            return i
+                        else:
+                            return NoneSelectedNetwork.__doc__
+                else:
+                    return WorksOnlyOnWindows.__doc__
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return AdminPermissionRequestDenied.__doc__
+
+    @classmethod
+    def TestConnection(cls , show : bool = False , timeout : int = 5):
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+            timeout (int): _Sets The Timeout For Each Request_. Defaults to 5.
+
+        Returns:
+            _str_: _Tests Internet Connection_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                if (type(timeout) is int):
+                    try:
+                        req = requests.get("https://www.google.com" , timeout = timeout)
+                        return f"{colorama.ansi.Fore.GREEN}You're Connected To Internet"
+                    except (requests.ConnectionError , requests.Timeout) as E:
+                        return f"{colorama.ansi.Fore.RED}You're not Connected To Internet \n{E}"
+                else:
+                    return NoneTypeArgumentInt
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -176,70 +259,26 @@ class GPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowGPUTotalMemory(cls , show : bool = False) -> float:
+    def StatusCodeChecker(cls , show : bool = False , link : str = ''):
         """_summary_
 
         Args:
-            show (bool): _Shows The Output_. Defaults to False.
+            _show_ (bool): _Shows The Output_. Defaults to False.
+            _link_ (str): Link to The Target Website or IP Address.
 
         Returns:
-            float: _GPU Total Memory_
+            _str_: Status Codes Available in Link or IP Address
         """
         if (type(show) is bool):
             if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuTot = f"{gpu.memoryTotal}MB"
-                return gpuTot
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-
-    @classmethod
-    def ShowGPUTemperature(cls , show : bool = False) -> float:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            float: _GPU Temperature_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuTemp = f"{gpu.temperature}℃"
-                return gpuTemp
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-
-    @classmethod
-    def ShowGPU_UUID(cls , show : bool = False) -> str:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            str: _GPU UUID_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                for gpu in cls.gpuInfo:
-                    gpuUUID = gpu.uuid
-                return gpuUUID
+                if (type(link) is str):
+                    for code in range(200 , 599 + 1):
+                        if (requests.get(link).status_code == code):
+                            print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.GREEN}is Available")
+                        else:
+                            print(f"{colorama.ansi.Fore.MAGENTA}Status : {colorama.ansi.Fore.BLUE}{code} {colorama.ansi.Fore.RED}is not Available")
+                else:
+                    return NoneTypeArgumentString
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):

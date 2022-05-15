@@ -22,44 +22,44 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-    CPUTools
+    GPUTools
     ========
-    version : 4.3.5\n
+    version : 4.3.6\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
 
 """
 
+
 try:
-    import psutil
-    import platform
+    import GPUtil
+    import colorama
     
-    from .exceptions import *
+    from ...exceptions import *
 
 except:
     raise ModuleNotFoundError
 
 
-class CPUTools:
-    phCores = psutil.cpu_count(logical = False)
-    totCores = psutil.cpu_count(logical = True)
-    cpuFreq = psutil.cpu_freq()
-    cpuType = platform.uname().processor
+class GPUTools:
+    gpuInfo = GPUtil.getGPUs()
 
     @classmethod
-    def ShowCPUType(cls , show : bool = False) -> str:
+    def ShowGPU_ID(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            str: _CPU Type_
+            str: _GPU ID_
         """
         if (type(show) is bool):
             if (show is True):
-                return cls.cpuType
+                for gpu in cls.gpuInfo:
+                    gpuID = gpu.id
+                return gpuID
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -71,18 +71,20 @@ class CPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowCPUPhysicalCores(cls , show : bool = False) -> int:
+    def ShowGPUName(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            int: _CPU Physical Cores_
+            str: _GPU Name_
         """
         if (type(show) is bool):
             if (show is True):
-                return cls.phCores
+                for gpu in cls.gpuInfo:
+                    gpuName = gpu.name
+                return gpuName
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -94,18 +96,25 @@ class CPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowCPUTotalCores(cls , show : bool = False) -> str:
+    def ShowGPULoad(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            str: _CPU Total Cores_
+            float: _GPU Load_
         """
         if (type(show) is bool):
             if (show is True):
-                return cls.totCores
+                for gpu in cls.gpuInfo:
+                    gpuLoad = gpu.load * 100
+                    if (gpuLoad > 50.0):
+                        newGpu = f"{colorama.ansi.Fore.RED}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
+                        return newGpu
+                    else:
+                        newGpu = f"{colorama.ansi.Fore.GREEN}{gpu.load * 100}%{colorama.ansi.Fore.WHITE}"
+                        return newGpu
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -117,41 +126,20 @@ class CPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowCPUMaxFreq(cls , show : bool = False) -> float:
+    def ShowGPUFreeMemory(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _CPU Maximum Frequency_
+            float: _GPU Free Memory_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{cls.cpuFreq.max:.2f}Mhz"
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-    
-    @classmethod
-    def ShowCPUMinFreq(cls , show : bool = False) -> float:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            float: _CPU Minimum Frequency_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                return f"{cls.cpuFreq.min:.2f}Mhz"
+                for gpu in cls.gpuInfo:
+                    gpuFree = gpu.memoryFree
+                return gpuFree
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -163,18 +151,20 @@ class CPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowCPUCurrentFreq(cls , show : bool = False) -> float:
+    def ShowGPUUsedMemory(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _CPU Current Frequency_
+            float: _GPU Used Memory_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{cls.cpuFreq.current:.2f}Mhz"
+                for gpu in cls.gpuInfo:
+                    gpuUsed = f"{gpu.memoryUsed}MB"
+                return gpuUsed
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -186,18 +176,20 @@ class CPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowCPUTotalUsage(cls , show : bool = False) -> float:
+    def ShowGPUTotalMemory(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _CPU Total Frequency_
+            float: _GPU Total Memory_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{psutil.cpu_percent()}%"
+                for gpu in cls.gpuInfo:
+                    gpuTot = f"{gpu.memoryTotal}MB"
+                return gpuTot
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -209,19 +201,45 @@ class CPUTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowCPUUsagePerCore(cls , show : bool = False) -> str:
+    def ShowGPUTemperature(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _CPU Usage Per Cores_
+            float: _GPU Temperature_
         """
         if (type(show) is bool):
             if (show is True):
-                for core , percentage in enumerate(psutil.cpu_percent(percpu = True , interval = 1)):
-                    print(f"Core {core} : {percentage}%")
+                for gpu in cls.gpuInfo:
+                    gpuTemp = f"{gpu.temperature}℃"
+                return gpuTemp
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return NoneTypeArgumentBool.__doc__
+
+    @classmethod
+    def ShowGPU_UUID(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _GPU UUID_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                for gpu in cls.gpuInfo:
+                    gpuUUID = gpu.uuid
+                return gpuUUID
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):

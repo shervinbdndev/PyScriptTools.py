@@ -27,7 +27,7 @@
 
     PyScriptTools Library
     =====================
-    version : 4.3.5\n
+    version : 4.3.6\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/\n
@@ -48,15 +48,9 @@ try:
     from pathlib import Path
     
     from .base import *
+    from .tools import *
     from .validators import *
     from .exceptions import *
-    from .NetworkTools import *
-    from .CPUTools import *
-    from .GPUTools import *
-    from .RAMTools import *
-    from .DiskTools import *
-    from .SystemTools import *
-    from .OtherTools import *
 
 except:
     pass

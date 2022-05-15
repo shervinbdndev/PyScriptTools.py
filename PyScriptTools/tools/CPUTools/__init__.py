@@ -22,43 +22,136 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-    RAMTools
+    CPUTools
     ========
-    version : 4.3.5\n
+    version : 4.3.6\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
 
 """
 
-
 try:
     import psutil
+    import platform
     
-    from .validators import *
-    from .exceptions import *
+    from ...exceptions import *
 
 except:
     raise ModuleNotFoundError
 
 
-class RAMTools:
-    ramVir = psutil.virtual_memory()
-    swapMemo = psutil.swap_memory()
+class CPUTools:
+    phCores = psutil.cpu_count(logical = False)
+    totCores = psutil.cpu_count(logical = True)
+    cpuFreq = psutil.cpu_freq()
+    cpuType = platform.uname().processor
+
+    @classmethod
+    def ShowCPUType(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _CPU Type_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                return cls.cpuType
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return NoneTypeArgumentBool.__doc__
+
+    @classmethod
+    def ShowCPUPhysicalCores(cls , show : bool = False) -> int:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            int: _CPU Physical Cores_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                return cls.phCores
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return NoneTypeArgumentBool.__doc__
+
+    @classmethod
+    def ShowCPUTotalCores(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _CPU Total Cores_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                return cls.totCores
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return NoneTypeArgumentBool.__doc__
+
+    @classmethod
+    def ShowCPUMaxFreq(cls , show : bool = False) -> float:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            float: _CPU Maximum Frequency_
+        """
+        if (type(show) is bool):
+            if (show is True):
+                return f"{cls.cpuFreq.max:.2f}Mhz"
+            elif (show is False):
+                return AdminPermissionRequestDenied.__doc__
+            elif (show is None):
+                show = None
+                return NotNullableArgument.__doc__
+            else:
+                return UnrecognizeableTypeArgument.__doc__
+        else:
+            return NoneTypeArgumentBool.__doc__
     
     @classmethod
-    def ShowTotalRAM(cls , show : bool = False) -> float:
+    def ShowCPUMinFreq(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _Total RAM Memory_
+            float: _CPU Minimum Frequency_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{LengthValidator.getSize(cls.ramVir.total)}"
+                return f"{cls.cpuFreq.min:.2f}Mhz"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -70,18 +163,18 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowAvailableRAM(cls , show : bool = False) -> float:
+    def ShowCPUCurrentFreq(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _Available RAM Memory_
+            float: _CPU Current Frequency_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{LengthValidator.getSize(cls.ramVir.available)}"
+                return f"{cls.cpuFreq.current:.2f}Mhz"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -93,18 +186,18 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowUsedRAM(cls , show : bool = False) -> float:
+    def ShowCPUTotalUsage(cls , show : bool = False) -> float:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _Used RAM Memory_
+            float: _CPU Total Frequency_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{LengthValidator.getSize(cls.ramVir.used)}"
+                return f"{psutil.cpu_percent()}%"
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -116,110 +209,19 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowRAMPercentage(cls , show : bool = False) -> float:
+    def ShowCPUUsagePerCore(cls , show : bool = False) -> str:
         """_summary_
 
         Args:
             show (bool): _Shows The Output_. Defaults to False.
 
         Returns:
-            float: _RAM Percentage_
+            float: _CPU Usage Per Cores_
         """
         if (type(show) is bool):
             if (show is True):
-                return f"{LengthValidator.getSize(cls.ramVir.percent)}%"
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-
-    @classmethod
-    def ShowTotalSwap(cls , show : bool = False) -> float:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            float: _Total Swap Memory_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                return f"{LengthValidator.getSize(cls.swapMemo.total)}"
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-
-    @classmethod
-    def ShowFreeSwap(cls , show : bool = False) -> int:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            int: _Free Swap Memory_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                return f"{LengthValidator.getSize(cls.swapMemo.free)}"
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-
-    @classmethod
-    def ShowUsedSwap(cls , show : bool = False) -> float:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            float: _Used Swap Memory_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                return f"{LengthValidator.getSize(cls.swapMemo.used)}"
-            elif (show is False):
-                return AdminPermissionRequestDenied.__doc__
-            elif (show is None):
-                show = None
-                return NotNullableArgument.__doc__
-            else:
-                return UnrecognizeableTypeArgument.__doc__
-        else:
-            return NoneTypeArgumentBool.__doc__
-
-    @classmethod
-    def ShowSwapPercentage(cls , show : bool = False) -> float:
-        """_summary_
-
-        Args:
-            show (bool): _Shows The Output_. Defaults to False.
-
-        Returns:
-            float: _Swap Percentage_
-        """
-        if (type(show) is bool):
-            if (show is True):
-                return f"{LengthValidator.getSize(cls.swapMemo.percent)}%"
+                for core , percentage in enumerate(psutil.cpu_percent(percpu = True , interval = 1)):
+                    print(f"Core {core} : {percentage}%")
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):

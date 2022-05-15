@@ -24,7 +24,7 @@
 
     OtherTools
     ==========
-    version : 4.3.5\n
+    version : 4.3.6\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -39,7 +39,7 @@ try:
     import platform
     from typing import (Tuple , Any)
     
-    from .exceptions import *
+    from ...exceptions import *
 
 except:
     raise ModuleNotFoundError

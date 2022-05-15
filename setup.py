@@ -9,7 +9,7 @@ with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)) , "READ
 
 setup(
     name="PyScriptTools",
-    version='4.3.5',
+    version='4.3.6',
     author="Shervin Badanara (shervinbdndev)",
     author_email="shervin2234@gmail.com",
     description='Simple Python Package to Gather and Show Your System Info.',

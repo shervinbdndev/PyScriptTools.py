@@ -22,12 +22,33 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-    PyScriptTools base
-    ========================
-    version : 4.3.5\n
+    base
+    ====
+    version : 4.3.6\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
 
 """
-__version__ : str = '4.3.5'
+
+__doc__ = """
+
+    PyScriptTools Library
+    =====================
+    version : 4.3.6\n
+    author : Shervin Badanara\n
+    author github : https://www.github.com/shervinbdndev/\n
+    source github : https://www.github.com/shervinbdndev/PyScriptTools.py/\n
+    
+    PyScriptTools is a Python Based Library That You Can Use it To Gather your System Information.\n
+    for e.x You Can Print Your Public IP Address:\n
+        >>> from PyScriptTools import NetworkTools
+        
+        >>> network_obj = NetworkTools()
+        >>> public_ip = network_obj.ShowPublicIP(show=True)
+        >>> print(public_ip)
+    
+"""
+
+__version__ = '4.3.5'
+__author__ = 'Shervin Badanara (shervinbdndev)'
