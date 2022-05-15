@@ -14,13 +14,13 @@
 <br>
 <div align="center">
     <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"></img>
+    <img src="https://github.com/shervinbdndev/PyScriptTools.py/blob/master/files.png"></img>
 </div>
 <br>
 <h3 align='center'>Ready To Use</h3>
 <h3 align='center'>Developed by Shervin Badanara (shervinbdndev) on Github</h3>
 <div align="center">
     <img src="https://forthebadge.com/images/badges/made-with-python.svg"></img>
-    <img src="https://github.com/shervinbdndev/PyScriptTools.py/blob/master/files.png"></img>
 </div>
 <br>
 <hr>
