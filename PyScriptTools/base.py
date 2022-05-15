@@ -22,26 +22,12 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-    PyScriptTools Validators
+    PyScriptTools base
     ========================
     version : 4.3.5\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
-    
-    PyScriptTools Builtin Validator: \n
-        LengthValidator
 
 """
-
-
-class OperatingSystem(object):
-    WINDOWS : bool
-    LINUX : bool
-
-class LengthValidator:
-    def getSize(bytes , default = "B"):
-        for unit in ["" , "K" , "M" , "G" , "T" , "P"]:
-            if (bytes < 1024):
-                return f"{bytes:.2f}{unit}{default}"
-            bytes /= 1024
+__version__ : str = '4.3.5'

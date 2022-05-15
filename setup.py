@@ -1,23 +1,18 @@
-from setuptools import setup, find_packages
-import codecs
 import os
+import codecs
+from setuptools import (setup, find_packages)
 
-here = os.path.abspath(os.path.dirname(__file__))
 
-with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
+with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)) , "README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
-
-VERSION = '4.3.4'
-DESCRIPTION = 'Simple Python Package to Gather and Show Your System Info.'
-LONG_DESCRIPTION = 'A package that allows you to Gather and Collect all of Your System Information by Calling Only methods.'
 
 
 setup(
     name="PyScriptTools",
-    version=VERSION,
+    version='4.3.5',
     author="Shervin Badanara (shervinbdndev)",
     author_email="shervin2234@gmail.com",
-    description=DESCRIPTION,
+    description='Simple Python Package to Gather and Show Your System Info.',
     long_description_content_type="text/markdown",
     long_description=long_description,
     packages=find_packages() ,
