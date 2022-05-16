@@ -24,18 +24,22 @@
 
     SystemTools
     ===========
-    version : 4.3.8\n
+    version : 4.3.9\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
 
 """
 
-
-from .CPUTools import *
-from .DiskTools import *
-from .GPUTools import *
-from .RAMTools import *
-from .SystemTools import *
-from .NetworkTools import *
-from .OtherTools import *
+try:
+    from .CPUTools import *
+    from .DiskTools import *
+    from .GPUTools import *
+    from .RAMTools import *
+    from .SystemTools import *
+    from .NetworkTools import *
+    from .OtherTools import *
+except:
+    ...
+finally:
+    ...

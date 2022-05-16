@@ -1,5 +1,5 @@
 <h1 align='center' style="font-size:5rem"><b>PyScriptTools</b></h1>
-<p align='center'><b>Version 4.3.8</b></p>
+<p align='center'><b>Version 4.3.9</b></p>
 <div align="center">
     <div align="center">
         <img src="https://img.shields.io/github/license/shervinbdndev/PyScriptTools.svg"></img>
@@ -98,15 +98,15 @@ py -m pip install --upgrade PyScriptTools
 
 Classes  |  Methods Count
 ------------- | -------------
-NetworkTools  | 8  
+NetworkTools  | 11
 CPUTools  |  8  
 GPUTools  |  8  
 RAMTools  |  8  
 DiskTools  |  6 
-SystemTools  |  11
+SystemTools  |  12
 OtherTools  |  3
 
-Total Methods  |  52
+Total Methods  |  56
 ------------- | -------------
 
 <br>
@@ -117,6 +117,9 @@ Methods  |  Args  |  Efficiency
 ShowLocalIP  |  show  |  Returns Local IP Address
 ShowPublicIP  |  show  | Returns Public IP Address
 ShowMacAddress  |  show , network_request  | Returns Mac Address
+ShowIPV4  |  show  | Returns All Available IPV4s
+ShowIPV6  |  show  | Returns All Available IPV6s
+ShowDefaultGateway  |  show  |  Returns All Available Default Gateways
 ShowNetworkInfo  |  show  | Returns Network Information
 ShowSavedNetworks  |  show  | Returns a Bunch of Saved Networks
 ShowSavedNetworkWithPassword  |  show , network_name  | Returns The Selected Network Name With Password
@@ -177,6 +180,7 @@ ShowOsType  |  show  |  Returns Operating System's Type
 ShowNodeName  |  show  |  Returns Node Name
 ShowOSRelease  |  show  |  Returns Operating System's Release Date
 ShowOSVersion  |  show  |  Returns Operating System's Version
+ShowWindowsOSFullName  |  show  |  Returns Windows OS Fullname
 ShowSystemName  |  show  |  Returns System's Name
 ShowSystemUptime  |  show  |  Returns System's Uptime
 ShowUserName  |  show  |  Returns Current Logined Username

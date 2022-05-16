@@ -24,7 +24,7 @@
 
     SystemTools
     ===========
-    version : 4.3.8\n
+    version : 4.3.9\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -61,6 +61,8 @@ class SystemTools:
         hour, mins = divmod(mins, 60)
         days, hour = divmod(hour, 24)
         uptimeSystem = str("{0}:{1}:{2}:{3}").format(days , hour , mins , sec)
+        if (not osType):
+            osType = [''.join(map(str , str(i).split(sep=':')[1].strip())) for i in os.popen(cmd='systeminfo').readlines() if ('System Type' in i)]
     except:
         getKernel32 = str(NoneLinuxMethod.__doc__);\
         getTime = str(NoneLinuxMethod.__doc__);\
@@ -71,6 +73,8 @@ class SystemTools:
         uptimeSystem=str(NoneLinuxMethod.__doc__)
         luts = ''.join(map(str , os.popen(cmd='uptime').readlines()))
         LuptimeSystem = luts.split(sep=' ')[1]
+    finally:
+        ...
     userName = getpass.getuser()
     listSysInfo = []
     pythonVer = sys.version[0:6]
@@ -124,6 +128,32 @@ class SystemTools:
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
+        
+    @classmethod
+    def ShowWindowsOSFullName(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _Windows OS Fullname
+        """
+        if (platform.system()[0].upper() in ['W']):
+            if (type(show) is bool):
+                if (show is True):
+                    return [str(i).split(sep=':')[1].strip() for i in os.popen(cmd='systeminfo').readlines() if ('OS Name:' in i)]
+                elif (show is False):
+                    return AdminPermissionRequestDenied.__doc__
+                elif (show is None):
+                    show = None
+                    return NotNullableArgument.__doc__
+                else:
+                    return UnrecognizeableTypeArgument.__doc__
+            else:
+                return NoneTypeArgumentBool.__doc__
+        else:
+            return NoneLinuxMethod.__doc__
 
     @classmethod
     def ShowNodeName(cls , show : bool = False) -> str:

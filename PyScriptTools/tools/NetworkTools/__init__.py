@@ -24,7 +24,7 @@
 
     NetworkTools
     ============
-    version : 4.3.8\n
+    version : 4.3.9\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -130,6 +130,96 @@ class NetworkTools:
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
+        
+    @classmethod
+    def ShowDefaultGateway(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _All Available Default Gateways_
+        """
+        if (platform.system()[0].upper() in ['W']):
+            if (type(show) is bool):
+                if (show is True):
+                    for i in os.popen(cmd='ipconfig /all').readlines():
+                        if ('Default Gateway' in i):
+                            temp = str(i).split(sep=':')
+                            defaultGateway = ''.join(map(str , temp[1])).strip()
+                            print(defaultGateway)
+                elif (show is False):
+                    return AdminPermissionRequestDenied.__doc__
+                elif (show is None):
+                    show = None
+                    return NotNullableArgument.__doc__
+                else:
+                    return UnrecognizeableTypeArgument.__doc__
+            else:
+                return NoneTypeArgumentBool.__doc__
+        else:
+            return NoneLinuxMethod.__doc__
+        
+    @classmethod
+    def ShowIPV4(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _All Available IPV4s_
+        """
+        if (platform.system()[0].upper() in ['W']):
+            if (type(show) is bool):
+                if (show is True):
+                    for i in os.popen(cmd='ipconfig').readlines():
+                        if ('IPv4 Address' in i):
+                            temp = str(i).split(sep=':')
+                            ipv4 = ''.join(map(str , temp[1:])).strip()
+                            print(ipv4)
+                elif (show is False):
+                    return AdminPermissionRequestDenied.__doc__
+                elif (show is None):
+                    show = None
+                    return NotNullableArgument.__doc__
+                else:
+                    return UnrecognizeableTypeArgument.__doc__
+            else:
+                return NoneTypeArgumentBool.__doc__
+        else:
+            return NoneLinuxMethod.__doc__
+        
+    @classmethod
+    def ShowIPV6(cls , show : bool = False) -> str:
+        """_summary_
+
+        Args:
+            show (bool): _Shows The Output_. Defaults to False.
+
+        Returns:
+            str: _All Available IPV6s_
+        """
+        if (platform.system()[0].upper() in ['W']):
+            if (type(show) is bool):
+                if (show is True):
+                    for i in os.popen(cmd='ipconfig').readlines():
+                        if ('Link-local IPv6 Address' in i):
+                            temp = str(i).split(sep=':')
+                            ipv6 = ''.join(map(str , temp[1:])).strip()
+                            print(ipv6)
+                elif (show is False):
+                    return AdminPermissionRequestDenied.__doc__
+                elif (show is None):
+                    show = None
+                    return NotNullableArgument.__doc__
+                else:
+                    return UnrecognizeableTypeArgument.__doc__
+            else:
+                return NoneTypeArgumentBool.__doc__
+        else:
+            return NoneLinuxMethod.__doc__
 
     @classmethod
     def ShowNetworkInfo(cls , show : bool = False) -> str:
