@@ -1,1 +1,1 @@
-__author__ = 'Shervin Badanara (shervinbdndev)'
+__author__ : str = 'Shervin Badanara (shervinbdndev)'

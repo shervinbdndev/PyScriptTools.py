@@ -24,7 +24,7 @@
 
     SystemTools
     ===========
-    version : 4.3.9\n
+    version : 4.3.10\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -41,6 +41,8 @@ try:
     import getpass
     import datetime
     import colorama
+    from typing import Type
+    from typing_extensions import Self
     
     from ...validators import *
     from ...exceptions import *
@@ -84,7 +86,7 @@ class SystemTools:
     bootTime = datetime.datetime.fromtimestamp(psutil.boot_time())
 
     @classmethod
-    def ShowOsName(cls , show : bool = False) -> str:
+    def ShowOsName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -107,7 +109,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowOsType(cls , show : bool = False) -> str:
+    def ShowOsType(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -130,7 +132,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
         
     @classmethod
-    def ShowWindowsOSFullName(cls , show : bool = False) -> str:
+    def ShowWindowsOSFullName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -156,7 +158,7 @@ class SystemTools:
             return NoneLinuxMethod.__doc__
 
     @classmethod
-    def ShowNodeName(cls , show : bool = False) -> str:
+    def ShowNodeName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -179,7 +181,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowOSRelease(cls , show : bool = False) -> str:
+    def ShowOSRelease(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -202,7 +204,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowOSVersion(cls , show : bool = False) -> str:
+    def ShowOSVersion(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -225,7 +227,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowSystemName(cls , show : bool = False) -> str:
+    def ShowSystemName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -248,7 +250,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowSystemUptime(cls , show : bool = False) -> str:
+    def ShowSystemUptime(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -271,7 +273,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowUserName(cls , show : bool = False) -> str:
+    def ShowUserName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -294,7 +296,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowSystemInformation(cls , show : bool = False , os_name : str = "") -> str:
+    def ShowSystemInformation(cls : Type[Self] , show : bool = False , os_name : str = "") -> str:
         """_summary_
 
         Args:
@@ -342,7 +344,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowPythonVersion(cls , show : bool = False) -> str:
+    def ShowPythonVersion(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -365,7 +367,7 @@ class SystemTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowBootTime(cls , show : bool = False) -> str:
+    def ShowBootTime(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:

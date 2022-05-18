@@ -24,7 +24,7 @@
 
     DiskTools
     =========
-    version : 4.3.9\n
+    version : 4.3.10\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -38,6 +38,8 @@ try:
     import psutil
     import string
     import colorama
+    from typing import Type
+    from typing_extensions import Self
     
     from ...validators import *
     from ...exceptions import *
@@ -57,7 +59,7 @@ class DiskTools:
     parentDiskInfo = psutil.disk_usage(path='/')
 
     @classmethod
-    def ShowDrives(cls , show : bool = False) -> list:
+    def ShowDrives(cls : Type[Self] , show : bool = False) -> list:
         """_summary_
 
         Args:
@@ -87,7 +89,7 @@ class DiskTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowParentDiskTotalMemory(cls , show : bool = False) -> float:
+    def ShowParentDiskTotalMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -110,7 +112,7 @@ class DiskTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod    
-    def ShowParentDiskUsedMemory(cls , show : bool = False) -> float:
+    def ShowParentDiskUsedMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -133,7 +135,7 @@ class DiskTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod    
-    def ShowParentDiskFreeMemory(cls , show : bool = False) -> float:
+    def ShowParentDiskFreeMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -156,7 +158,7 @@ class DiskTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod    
-    def ShowParentDiskPercentage(cls , show : bool = False) -> float:
+    def ShowParentDiskPercentage(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -179,7 +181,7 @@ class DiskTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod    
-    def ShowDiskInfo(cls , show : bool = False) -> str:
+    def ShowDiskInfo(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:

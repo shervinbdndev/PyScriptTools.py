@@ -24,7 +24,7 @@
 
     RAMTools
     ========
-    version : 4.3.9\n
+    version : 4.3.10\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -34,6 +34,8 @@
 
 try:
     import psutil
+    from typing import Type
+    from typing_extensions import Self
     
     from ...validators import *
     from ...exceptions import *
@@ -47,7 +49,7 @@ class RAMTools:
     swapMemo = psutil.swap_memory()
     
     @classmethod
-    def ShowTotalRAM(cls , show : bool = False) -> float:
+    def ShowTotalRAM(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -70,7 +72,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowAvailableRAM(cls , show : bool = False) -> float:
+    def ShowAvailableRAM(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -93,7 +95,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowUsedRAM(cls , show : bool = False) -> float:
+    def ShowUsedRAM(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -116,7 +118,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowRAMPercentage(cls , show : bool = False) -> float:
+    def ShowRAMPercentage(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -139,7 +141,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowTotalSwap(cls , show : bool = False) -> float:
+    def ShowTotalSwap(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -162,7 +164,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowFreeSwap(cls , show : bool = False) -> int:
+    def ShowFreeSwap(cls : Type[Self] , show : bool = False) -> int:
         """_summary_
 
         Args:
@@ -185,7 +187,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowUsedSwap(cls , show : bool = False) -> float:
+    def ShowUsedSwap(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:
@@ -208,7 +210,7 @@ class RAMTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowSwapPercentage(cls , show : bool = False) -> float:
+    def ShowSwapPercentage(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
 
         Args:

@@ -24,7 +24,7 @@
 
     OtherTools
     ==========
-    version : 4.3.9\n
+    version : 4.3.10\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -37,7 +37,8 @@ try:
     import cfonts
     import colorama
     import platform
-    from typing import (Tuple , Any)
+    from typing_extensions import Self
+    from typing import (Tuple , Type , Any)
     
     from ...exceptions import *
 
@@ -50,7 +51,7 @@ class OtherTools:
     pathValidation = bool()
 
     @classmethod
-    def ConvertToAscii(cls , show : bool = False , text : Any = '' , colors : list = [] , align : Tuple[str] = "" , font : str = "") -> str:
+    def ConvertToAscii(cls : Type[Self] , show : bool = False , text : Any = '' , colors : list = [] , align : Tuple[str] = "" , font : str = "") -> str:
         """_summary_
 
         Args:
@@ -88,7 +89,7 @@ class OtherTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def IsPath(cls , show : bool = False , pathaddr : str = '') -> str:
+    def IsPath(cls : Type[Self] , show : bool = False , pathaddr : str = '') -> str:
         """_summary_
 
         Args:
@@ -118,7 +119,7 @@ class OtherTools:
             return NoneTypeArgumentBool.__doc__
         
     @classmethod
-    def GetAbsOutput(cls , show : bool = False , string : str = '') -> str:
+    def GetAbsOutput(cls : Type[Self] , show : bool = False , string : str = '') -> str:
         """_summary_
 
         Args:

@@ -9,7 +9,7 @@ with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)) , "READ
 
 setup(
     name="PyScriptTools",
-    version='4.3.9',
+    version='4.3.10',
     author="Shervin Badanara (shervinbdndev)",
     maintainer="Shervin Badanara",
     author_email="shervin2234@gmail.com",
@@ -24,7 +24,7 @@ setup(
     install_requires=['GPUtil' , 'requests' , 'sockets' , 'colorama' , 'python-cfonts' , 'setuptools' , 'wheel' , 'getmac' , 'psutil'] ,
     keywords=['python', 'system', 'systeminfo', 'local ip', 'public ip', 'sockets' , 'cpu info' , 'gpu info' , 'ram info' , 'disk info'],
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",

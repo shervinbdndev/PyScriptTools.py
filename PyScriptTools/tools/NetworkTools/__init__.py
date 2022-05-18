@@ -24,7 +24,7 @@
 
     NetworkTools
     ============
-    version : 4.3.9\n
+    version : 4.3.10\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -41,6 +41,8 @@ try:
     import getmac
     import colorama
     import platform
+    from typing import Type
+    from typing_extensions import Self
     
     from ...exceptions import *
 
@@ -56,7 +58,7 @@ class NetworkTools:
     ipAddrs =  psutil.net_if_addrs()
     
     @classmethod
-    def ShowLocalIP(cls , show : bool = False) -> str:
+    def ShowLocalIP(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -79,7 +81,7 @@ class NetworkTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowPublicIP(cls , show : bool = False) -> str:
+    def ShowPublicIP(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -105,7 +107,7 @@ class NetworkTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowMacAddress(cls , show : bool = False , network_request : bool = True) -> str:
+    def ShowMacAddress(cls : Type[Self] , show : bool = False , network_request : bool = True) -> str:
         """_summary_
 
         Args:
@@ -132,7 +134,7 @@ class NetworkTools:
             return NoneTypeArgumentBool.__doc__
         
     @classmethod
-    def ShowDefaultGateway(cls , show : bool = False) -> str:
+    def ShowDefaultGateway(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -162,7 +164,7 @@ class NetworkTools:
             return NoneLinuxMethod.__doc__
         
     @classmethod
-    def ShowIPV4(cls , show : bool = False) -> str:
+    def ShowIPV4(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -192,7 +194,7 @@ class NetworkTools:
             return NoneLinuxMethod.__doc__
         
     @classmethod
-    def ShowIPV6(cls , show : bool = False) -> str:
+    def ShowIPV6(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -222,7 +224,7 @@ class NetworkTools:
             return NoneLinuxMethod.__doc__
 
     @classmethod
-    def ShowNetworkInfo(cls , show : bool = False) -> str:
+    def ShowNetworkInfo(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -255,7 +257,7 @@ class NetworkTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def ShowSavedNetworks(cls , show : bool = False) -> str:
+    def ShowSavedNetworks(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
 
         Args:
@@ -286,7 +288,7 @@ class NetworkTools:
             return AdminPermissionRequestDenied.__doc__
         
     @classmethod
-    def ShowSavedNetworkWithPassword(cls , show : bool = False , network_name : str = '') -> str:
+    def ShowSavedNetworkWithPassword(cls : Type[Self] , show : bool = False , network_name : str = '') -> str:
         """_summary_
 
         Args:
@@ -318,7 +320,7 @@ class NetworkTools:
             return AdminPermissionRequestDenied.__doc__
 
     @classmethod
-    def TestConnection(cls , show : bool = False , timeout : int = 5):
+    def TestConnection(cls : Type[Self] , show : bool = False , timeout : int = 5):
         """_summary_
 
         Args:
@@ -349,7 +351,7 @@ class NetworkTools:
             return NoneTypeArgumentBool.__doc__
 
     @classmethod
-    def StatusCodeChecker(cls , show : bool = False , link : str = ''):
+    def StatusCodeChecker(cls : Type[Self] , show : bool = False , link : str = ''):
         """_summary_
 
         Args:
