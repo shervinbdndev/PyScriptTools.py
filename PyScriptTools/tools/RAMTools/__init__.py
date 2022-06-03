@@ -40,8 +40,8 @@ try:
     from ...validators import *
     from ...exceptions import *
 
-except:
-    raise ModuleNotFoundError
+except ModuleNotFoundError.__doc__ as mnfe:
+    raise AttributeError(args='Cannot Run') from None
 
 
 class RAMTools:
