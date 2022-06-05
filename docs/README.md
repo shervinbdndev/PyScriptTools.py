@@ -1,5 +1,5 @@
 <h1 align='center' style="font-size:5rem"><b>PyScriptTools</b></h1>
-<p align='center'><b>Version 4.3.10</b></p>
+<p align='center'><b>Version 4.3.11</b></p>
 <div align="center">
     <div align="center">
         <img src="https://img.shields.io/github/license/shervinbdndev/PyScriptTools.svg"></img>
@@ -14,7 +14,6 @@
 <br>
 <div align="center">
     <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github-readme-stats.vercel.app/api/pin/?username=shervinbdndev&repo=PyScriptTools&theme=dracula"></img>
-    <img style="display:block;margin-left:auto;margin-right:auto;width:70%;" src="https://github.com/shervinbdndev/PyScriptTools.py/blob/master/file.png"></img>
 </div>
 <br>
 <h3 align='center'>Ready To Use</h3>

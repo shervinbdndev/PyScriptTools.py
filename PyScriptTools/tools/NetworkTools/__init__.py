@@ -24,7 +24,7 @@
 
     NetworkTools
     ============
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -36,8 +36,6 @@ try:
     import os
     import socket
     import requests
-    import json
-    import psutil
     import getmac
     import colorama
     import platform
@@ -45,17 +43,13 @@ try:
     from typing_extensions import Self
     
     from ...exceptions import *
+    from ...utils import NetworkUtils
 
 except ModuleNotFoundError.__doc__ as mnfe:
     raise AttributeError(args='Cannot Run') from None
 
 
-class NetworkTools:
-    localIP = str(socket.gethostbyname(socket.gethostname()))
-    publicIPLoader = requests.get('https://api.myip.com').content
-    loadedIP = json.loads(publicIPLoader)
-    publicIP = str(loadedIP['ip'])
-    ipAddrs =  psutil.net_if_addrs()
+class NetworkTools(NetworkUtils):
     
     @classmethod
     def ShowLocalIP(cls : Type[Self] , show : bool = False) -> str:

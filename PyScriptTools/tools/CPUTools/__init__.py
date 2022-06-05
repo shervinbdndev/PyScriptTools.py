@@ -24,7 +24,7 @@
 
     CPUTools
     ========
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -33,21 +33,17 @@
 
 try:
     import psutil
-    import platform
     from typing import Type
     from typing_extensions import Self
     
     from ...exceptions import *
+    from ...utils import CPUUtils
 
 except ModuleNotFoundError.__doc__ as mnfe:
     raise AttributeError(args='Cannot Run') from None
 
 
-class CPUTools:
-    phCores = psutil.cpu_count(logical = False)
-    totCores = psutil.cpu_count(logical = True)
-    cpuFreq = psutil.cpu_freq()
-    cpuType = platform.uname().processor
+class CPUTools(CPUUtils):
 
     @classmethod
     def ShowCPUType(cls : Type[Self] , show : bool = False) -> str:

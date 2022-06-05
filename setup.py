@@ -3,13 +3,13 @@ import codecs
 from setuptools import (setup, find_packages)
 
 
-with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)) , "README.md"), encoding="utf-8") as fh:
+with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)) , r"docs/README.md"), encoding="utf-8") as fh:
     long_description = "\n" + fh.read()
 
 
 setup(
     name="PyScriptTools",
-    version='4.3.10',
+    version='4.3.11',
     author="Shervin Badanara (shervinbdndev)",
     maintainer="Shervin Badanara",
     author_email="shervin2234@gmail.com",

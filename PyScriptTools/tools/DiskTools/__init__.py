@@ -24,7 +24,7 @@
 
     DiskTools
     =========
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -33,7 +33,6 @@
 
 
 try:
-    import ctypes
     import platform
     import psutil
     import string
@@ -43,20 +42,14 @@ try:
     
     from ...validators import *
     from ...exceptions import *
+    from ...utils import DiskUtils
 
 except ModuleNotFoundError.__doc__ as mnfe:
     raise AttributeError(args='Cannot Run') from None
 
 
 
-class DiskTools:
-    listDrives = []
-    try:
-        bitMask = ctypes.windll.kernel32.GetLogicalDrives()
-    except:
-        bitMask = str(NoneLinuxMethod.__doc__)
-    drivesInfo = psutil.disk_partitions()
-    parentDiskInfo = psutil.disk_usage(path='/')
+class DiskTools(DiskUtils):
 
     @classmethod
     def ShowDrives(cls : Type[Self] , show : bool = False) -> list:

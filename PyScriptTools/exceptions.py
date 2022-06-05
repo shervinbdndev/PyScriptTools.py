@@ -24,7 +24,7 @@
 
     PyScriptTools Exceptions
     ========================
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -43,25 +43,25 @@
 
 
 
-class AdminPermissionRequestDenied(Exception):
+class AdminPermissionRequestDenied(BaseException):
     """Admin Permission Denied Set the Argument Variable 'show' to 'True' """
-class NoneTypeArgumentBool(Exception):
+class NoneTypeArgumentBool(BaseException):
     """The Variable For Argument 'show' Should be 'Boolean' Type """
-class NoneTypeArgumentInt(Exception):
+class NoneTypeArgumentInt(BaseException):
     """The Variable For Argument 'timeout' Should be 'Int' Type """
-class NoneTypeArgumentString(Exception):
+class NoneTypeArgumentString(BaseException):
     """The Variable For Argument 'link' Should be 'String' Type """
-class NoneSelectedNetwork(Exception):
+class NoneSelectedNetwork(BaseException):
     """Network Name Not Available """
-class WorksOnlyOnWindows(Exception):
+class WorksOnlyOnWindows(BaseException):
     """This Method Only Works on Windows OS"""
-class NotNullableArgument(Exception):
+class NotNullableArgument(BaseException):
     """This Argument Cannot Be Nullable (Switch the value from None to another value) """
-class NoneLinuxMethod(Exception):
+class NoneLinuxMethod(BaseException):
     """This Method is not Used in Linux OS """
-class UndefinedOperatingSystem(Exception):
+class UndefinedOperatingSystem(BaseException):
     """The Operating System is Not Defined Yet """
-class UnrecognizeableTypeArgument(Exception):
+class UnrecognizeableTypeArgument(BaseException):
     """The Variable For Arguments is not Recognizeable """
-class InvalidVariableType(Exception):
+class InvalidVariableType(BaseException):
     """The Variable Type Chosen is not The Correct One """

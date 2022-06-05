@@ -24,7 +24,7 @@
 
     PyScriptTools Validators
     ========================
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -33,8 +33,14 @@
         LengthValidator
 
 """
+try:
+    from dataclasses import dataclass
+
+except ModuleNotFoundError.__doc__ as mnfe:
+    raise AttributeError(args='Cannot Run') from None
 
 
+@dataclass
 class OperatingSystem(object):
     WINDOWS : bool
     LINUX : bool

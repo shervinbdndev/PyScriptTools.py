@@ -24,7 +24,7 @@
 
     RAMTools
     ========
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -39,14 +39,13 @@ try:
     
     from ...validators import *
     from ...exceptions import *
+    from ...utils import RAMUtils
 
 except ModuleNotFoundError.__doc__ as mnfe:
     raise AttributeError(args='Cannot Run') from None
 
 
-class RAMTools:
-    ramVir = psutil.virtual_memory()
-    swapMemo = psutil.swap_memory()
+class RAMTools(RAMUtils):
     
     @classmethod
     def ShowTotalRAM(cls : Type[Self] , show : bool = False) -> float:

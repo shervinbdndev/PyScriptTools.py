@@ -24,7 +24,7 @@
 
     SystemTools
     ===========
-    version : 4.3.10\n
+    version : 4.3.11\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -34,56 +34,21 @@
 
 try:
     import os
-    import sys
     import platform
-    import ctypes
-    import psutil
-    import getpass
-    import datetime
     import colorama
     from typing import Type
     from typing_extensions import Self
     
     from ...validators import *
     from ...exceptions import *
+    from ...utils import SystemUtils
     
 except ModuleNotFoundError.__doc__ as mnfe:
     raise AttributeError(args='Cannot Run') from None
 
 
 
-class SystemTools:
-    osName = str(platform.system())
-    osType = list(platform.architecture())[0]
-    systemName = str(platform.node())
-    try:
-        getKernel32 = ctypes.windll.kernel32.GetTickCount64()
-        getTime = int(str(getKernel32)[:-3])
-        mins, sec = divmod(getTime, 60)
-        hour, mins = divmod(mins, 60)
-        days, hour = divmod(hour, 24)
-        uptimeSystem = str("{0}:{1}:{2}:{3}").format(days , hour , mins , sec)
-        if (not osType):
-            osType = [''.join(map(str , str(i).split(sep=':')[1].strip())) for i in os.popen(cmd='systeminfo').readlines() if ('System Type' in i)]
-    except:
-        getKernel32 = str(NoneLinuxMethod.__doc__);\
-        getTime = str(NoneLinuxMethod.__doc__);\
-        mins=str(NoneLinuxMethod.__doc__);\
-        sec=str(NoneLinuxMethod.__doc__);\
-        hour=str(NoneLinuxMethod.__doc__);\
-        days=str(NoneLinuxMethod.__doc__);\
-        uptimeSystem=str(NoneLinuxMethod.__doc__)
-        luts = ''.join(map(str , os.popen(cmd='uptime').readlines()))
-        LuptimeSystem = luts.split(sep=' ')[1]
-    finally:
-        ...
-    userName = getpass.getuser()
-    listSysInfo = []
-    pythonVer = sys.version[0:6]
-    nodeName = platform.uname().node
-    sysRelease = platform.uname().release
-    sysVersion = platform.uname().version
-    bootTime = datetime.datetime.fromtimestamp(psutil.boot_time())
+class SystemTools(SystemUtils):
 
     @classmethod
     def ShowOsName(cls : Type[Self] , show : bool = False) -> str:
