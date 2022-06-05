@@ -53,8 +53,8 @@ try:
     from .validators import *
     from .exceptions import *
 
-except:
-    pass
+except ModuleNotFoundError.__doc__ as mnfe:
+    raise AttributeError(args='Cannot Run') from None
 
     
     
@@ -66,4 +66,4 @@ if (__name__ == '__main__' and __package__ is None):
     try:
         sys.path.remove(str(parent))
     except ValueError:
-        pass
+        raise BaseException.__doc__
