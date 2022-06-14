@@ -24,109 +24,18 @@
 
     Utils
     =====
-    version : 4.3.11\n
+    version : 4.3.12\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
 
 """
 
-
 try:
-    import os
-    import sys
-    import json
-    import socket
-    import ctypes
-    import GPUtil
-    import psutil
-    import getpass
-    import platform
-    import datetime
-    import requests
-    from dataclasses import dataclass
-    
-    from ..exceptions import *
+    from .dataclasses import *
     
 except ModuleNotFoundError.__doc__ as mnfe:
-    raise AttributeError(args='Cannot Run') from None
+    raise AttributeError(args='Cannot Import') from None
 
-
-
-@dataclass
-class CPUUtils:
-    phCores = psutil.cpu_count(logical = False)
-    totCores = psutil.cpu_count(logical = True)
-    cpuFreq = psutil.cpu_freq()
-    cpuType = platform.uname().processor
-    
-    
-
-@dataclass
-class DiskUtils:
-    listDrives = []
-    try:
-        bitMask = ctypes.windll.kernel32.GetLogicalDrives()
-    except:
-        bitMask = str(NoneLinuxMethod.__doc__)
-    drivesInfo = psutil.disk_partitions()
-    parentDiskInfo = psutil.disk_usage(path='/')
-    
-    
-
-@dataclass
-class GPUUtils:
-    gpuInfo = GPUtil.getGPUs()
-    
-    
-
-@dataclass
-class NetworkUtils:
-    localIP = str(socket.gethostbyname(socket.gethostname()))
-    publicIPLoader = requests.get('https://api.myip.com').content
-    loadedIP = json.loads(publicIPLoader)
-    publicIP = str(loadedIP['ip'])
-    ipAddrs =  psutil.net_if_addrs()
-    
-    
-
-@dataclass
-class RAMUtils:
-    ramVir = psutil.virtual_memory()
-    swapMemo = psutil.swap_memory()
-    
-    
-
-@dataclass
-class SystemUtils:
-    osName = str(platform.system())
-    osType = list(platform.architecture())[0]
-    systemName = str(platform.node())
-    try:
-        getKernel32 = ctypes.windll.kernel32.GetTickCount64()
-        getTime = int(str(getKernel32)[:-3])
-        mins, sec = divmod(getTime, 60)
-        hour, mins = divmod(mins, 60)
-        days, hour = divmod(hour, 24)
-        uptimeSystem = str("{0}:{1}:{2}:{3}").format(days , hour , mins , sec)
-        if (not osType):
-            osType = [''.join(map(str , str(i).split(sep=':')[1].strip())) for i in os.popen(cmd='systeminfo').readlines() if ('System Type' in i)]
-    except:
-        getKernel32 = str(NoneLinuxMethod.__doc__);\
-        getTime = str(NoneLinuxMethod.__doc__);\
-        mins=str(NoneLinuxMethod.__doc__);\
-        sec=str(NoneLinuxMethod.__doc__);\
-        hour=str(NoneLinuxMethod.__doc__);\
-        days=str(NoneLinuxMethod.__doc__);\
-        uptimeSystem=str(NoneLinuxMethod.__doc__)
-        luts = ''.join(map(str , os.popen(cmd='uptime').readlines()))
-        LuptimeSystem = luts.split(sep=' ')[1]
-    finally:
-        ...
-    userName = getpass.getuser()
-    listSysInfo = []
-    pythonVer = sys.version[0:6]
-    nodeName = platform.uname().node
-    sysRelease = platform.uname().release
-    sysVersion = platform.uname().version
-    bootTime = datetime.datetime.fromtimestamp(psutil.boot_time())
+finally:
+    ...

@@ -27,7 +27,7 @@
 
     PyScriptTools Library
     =====================
-    version : 4.3.11\n
+    version : 4.3.12\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/\n

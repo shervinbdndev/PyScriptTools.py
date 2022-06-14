@@ -9,7 +9,7 @@ with codecs.open(os.path.join(os.path.abspath(os.path.dirname(__file__)) , r"doc
 
 setup(
     name="PyScriptTools",
-    version='4.3.11',
+    version='4.3.12',
     author="Shervin Badanara (shervinbdndev)",
     maintainer="Shervin Badanara",
     author_email="shervin2234@gmail.com",
