@@ -24,7 +24,7 @@
 
     Dataclasses
     ===========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -82,11 +82,22 @@ class GPUUtils:
 
 @dataclass
 class NetworkUtils:
-    localIP = str(socket.gethostbyname(socket.gethostname()))
-    publicIPLoader = requests.get('https://api.myip.com').content
-    loadedIP = json.loads(publicIPLoader)
-    publicIP = str(loadedIP['ip'])
+    global __localIP
+    global __publicIP
+    __localIP = str(socket.gethostbyname(socket.gethostname()))
+    __publicIPLoader = requests.get('https://api.myip.com').content
+    __loadedIP = json.loads(__publicIPLoader)
+    __publicIP = str(__loadedIP['ip'])
     ipAddrs =  psutil.net_if_addrs()
+
+    @staticmethod
+    def _localIP() -> str:
+        return __localIP
+    
+    @staticmethod
+    def _publicIP() -> str:
+        return __publicIP
+    
     
     
 

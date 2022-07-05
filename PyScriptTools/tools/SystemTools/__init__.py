@@ -24,7 +24,7 @@
 
     SystemTools
     ===========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -36,7 +36,7 @@ try:
     import os
     import platform
     import colorama
-    from typing import Type
+    from typing import (Type , final)
     from typing_extensions import Self
     
     from ...validators import *
@@ -49,7 +49,12 @@ except ModuleNotFoundError.__doc__ as mnfe:
 
 
 class SystemTools(SystemUtils):
+    
+    def __repr__(self : Self) -> Self:
+        super(SystemTools , self).__repr__()
+        return 'SystemTools Class in PyScriptTools Library'
 
+    @final
     @classmethod
     def ShowOsName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -73,6 +78,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowOsType(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -95,7 +101,8 @@ class SystemTools(SystemUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-        
+
+    @final
     @classmethod
     def ShowWindowsOSFullName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -122,6 +129,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneLinuxMethod.__doc__
 
+    @final
     @classmethod
     def ShowNodeName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -145,6 +153,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowOSRelease(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -168,6 +177,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowOSVersion(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -191,6 +201,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowSystemName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -214,6 +225,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowSystemUptime(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -237,6 +249,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowUserName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -260,6 +273,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowSystemInformation(cls : Type[Self] , show : bool = False , os_name : str = "") -> str:
         """_summary_
@@ -308,6 +322,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowPythonVersion(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -331,6 +346,7 @@ class SystemTools(SystemUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowBootTime(cls : Type[Self] , show : bool = False) -> str:
         """_summary_

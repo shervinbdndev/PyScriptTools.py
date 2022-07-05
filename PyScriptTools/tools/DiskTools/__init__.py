@@ -24,7 +24,7 @@
 
     DiskTools
     =========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -37,7 +37,7 @@ try:
     import psutil
     import string
     import colorama
-    from typing import Type
+    from typing import (Type , final)
     from typing_extensions import Self
     
     from ...validators import *
@@ -50,7 +50,12 @@ except ModuleNotFoundError.__doc__ as mnfe:
 
 
 class DiskTools(DiskUtils):
+    
+    def __repr__(self : Self) -> Self:
+        super(DiskTools , self).__repr__()
+        return 'DiskTools Class in PyScriptTools Library'
 
+    @final
     @classmethod
     def ShowDrives(cls : Type[Self] , show : bool = False) -> list:
         """_summary_
@@ -81,6 +86,7 @@ class DiskTools(DiskUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowParentDiskTotalMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -104,6 +110,7 @@ class DiskTools(DiskUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod    
     def ShowParentDiskUsedMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -127,6 +134,7 @@ class DiskTools(DiskUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod    
     def ShowParentDiskFreeMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -150,6 +158,7 @@ class DiskTools(DiskUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod    
     def ShowParentDiskPercentage(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -173,6 +182,7 @@ class DiskTools(DiskUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod    
     def ShowDiskInfo(cls : Type[Self] , show : bool = False) -> str:
         """_summary_

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "PyScriptTools"
-version = "4.3.12"
+version = "4.3.13"
 description = ""
 authors = ["shervinbdndev <shervin2234@gmail.com>"]
 

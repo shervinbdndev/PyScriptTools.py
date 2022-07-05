@@ -24,7 +24,7 @@
 
     CPUTools
     ========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -33,7 +33,7 @@
 
 try:
     import psutil
-    from typing import Type
+    from typing import (Type , final)
     from typing_extensions import Self
     
     from ...exceptions import *
@@ -44,7 +44,12 @@ except ModuleNotFoundError.__doc__ as mnfe:
 
 
 class CPUTools(CPUUtils):
+    
+    def __repr__(self : Self) -> Self:
+        super(CPUTools , self).__repr__()
+        return 'CPUTools Class in PyScriptTools Library'
 
+    @final
     @classmethod
     def ShowCPUType(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -68,6 +73,7 @@ class CPUTools(CPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowCPUPhysicalCores(cls : Type[Self] , show : bool = False) -> int:
         """_summary_
@@ -91,6 +97,7 @@ class CPUTools(CPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowCPUTotalCores(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -114,6 +121,7 @@ class CPUTools(CPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowCPUMaxFreq(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -136,7 +144,8 @@ class CPUTools(CPUUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-    
+
+    @final
     @classmethod
     def ShowCPUMinFreq(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -160,6 +169,7 @@ class CPUTools(CPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowCPUCurrentFreq(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -183,6 +193,7 @@ class CPUTools(CPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowCPUTotalUsage(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -206,6 +217,7 @@ class CPUTools(CPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowCPUUsagePerCore(cls : Type[Self] , show : bool = False) -> str:
         """_summary_

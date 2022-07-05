@@ -24,7 +24,7 @@
 
     OtherTools
     ==========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -38,7 +38,7 @@ try:
     import colorama
     import platform
     from typing_extensions import Self
-    from typing import (Tuple , Type , Any)
+    from typing import (Tuple , Type , Any , final)
     
     from ...exceptions import *
 
@@ -50,6 +50,11 @@ except ModuleNotFoundError.__doc__ as mnfe:
 class OtherTools:
     pathValidation = bool()
 
+    def __repr__(self : Self) -> Self:
+        super(OtherTools , self).__repr__()
+        return 'OtherTools Class in PyScriptTools Library'
+
+    @final
     @classmethod
     def ConvertToAscii(cls : Type[Self] , show : bool = False , text : Any = '' , colors : list = [] , align : Tuple[str] = "" , font : str = "") -> str:
         """_summary_
@@ -88,6 +93,7 @@ class OtherTools:
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def IsPath(cls : Type[Self] , show : bool = False , pathaddr : str = '') -> str:
         """_summary_
@@ -117,7 +123,8 @@ class OtherTools:
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-        
+
+    @final
     @classmethod
     def GetAbsOutput(cls : Type[Self] , show : bool = False , string : str = '') -> str:
         """_summary_

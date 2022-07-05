@@ -24,7 +24,7 @@
 
     PyScriptTools Exceptions
     ========================
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -65,3 +65,5 @@ class UnrecognizeableTypeArgument(BaseException):
     """The Variable For Arguments is not Recognizeable """
 class InvalidVariableType(BaseException):
     """The Variable Type Chosen is not The Correct One """
+class InternetConnectionProblem(BaseException):
+    """ Your Device Is Not Connected To The Internet """

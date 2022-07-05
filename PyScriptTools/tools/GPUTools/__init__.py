@@ -24,7 +24,7 @@
 
     GPUTools
     ========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -34,7 +34,7 @@
 
 try:
     import colorama
-    from typing import Type
+    from typing import (Type , final)
     from typing_extensions import Self
     
     from ...exceptions import *
@@ -45,7 +45,12 @@ except ModuleNotFoundError.__doc__ as mnfe:
 
 
 class GPUTools(GPUUtils):
+    
+    def __repr__(self : Self) -> Self:
+        super(GPUTools , self).__repr__()
+        return 'GPUTools Class in PyScriptTools Library'
 
+    @final
     @classmethod
     def ShowGPU_ID(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -71,6 +76,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPUName(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -96,6 +102,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPULoad(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -126,6 +133,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPUFreeMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -151,6 +159,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPUUsedMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -176,6 +185,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPUTotalMemory(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -201,6 +211,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPUTemperature(cls : Type[Self] , show : bool = False) -> float:
         """_summary_
@@ -226,6 +237,7 @@ class GPUTools(GPUUtils):
         else:
             return NoneTypeArgumentBool.__doc__
 
+    @final
     @classmethod
     def ShowGPU_UUID(cls : Type[Self] , show : bool = False) -> str:
         """_summary_

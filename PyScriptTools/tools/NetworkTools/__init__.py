@@ -24,7 +24,7 @@
 
     NetworkTools
     ============
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -39,18 +39,24 @@ try:
     import getmac
     import colorama
     import platform
-    from typing import Type
+    from typing import (Type , final)
     from typing_extensions import Self
     
     from ...exceptions import *
     from ...utils import NetworkUtils
 
-except ModuleNotFoundError.__doc__ as mnfe:
-    raise AttributeError(args='Cannot Run') from None
+except :
+    pass
+
 
 
 class NetworkTools(NetworkUtils):
     
+    def __repr__(self : Self) -> Self:
+        super(NetworkTools , self).__repr__()
+        return 'NetworkTools Class in PyScriptTools Library'
+    
+    @final
     @classmethod
     def ShowLocalIP(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -63,7 +69,7 @@ class NetworkTools(NetworkUtils):
         """
         if (type(show) is bool):
             if (show is True):
-                return cls.localIP
+                return cls._localIP()
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -73,7 +79,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-
+    
+    @final
     @classmethod
     def ShowPublicIP(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -87,9 +94,9 @@ class NetworkTools(NetworkUtils):
         if (type(show) is bool):
             if (show is True):
                 try:
-                    return cls.publicIP
+                    return cls._publicIP()
                 except ConnectionError:
-                    pass
+                    return
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -99,7 +106,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-
+    
+    @final
     @classmethod
     def ShowMacAddress(cls : Type[Self] , show : bool = False , network_request : bool = True) -> str:
         """_summary_
@@ -116,7 +124,7 @@ class NetworkTools(NetworkUtils):
                 try:
                     return getmac.get_mac_address(ip = socket.gethostbyname(socket.gethostname()) , network_request = network_request)
                 except ConnectionError:
-                    pass
+                    return InternetConnectionProblem.__doc__
             elif (show is False):
                 return AdminPermissionRequestDenied.__doc__
             elif (show is None):
@@ -126,7 +134,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-        
+    
+    @final
     @classmethod
     def ShowDefaultGateway(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -156,7 +165,8 @@ class NetworkTools(NetworkUtils):
                 return NoneTypeArgumentBool.__doc__
         else:
             return NoneLinuxMethod.__doc__
-        
+    
+    @final
     @classmethod
     def ShowIPV4(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -186,7 +196,8 @@ class NetworkTools(NetworkUtils):
                 return NoneTypeArgumentBool.__doc__
         else:
             return NoneLinuxMethod.__doc__
-        
+    
+    @final
     @classmethod
     def ShowIPV6(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -216,7 +227,8 @@ class NetworkTools(NetworkUtils):
                 return NoneTypeArgumentBool.__doc__
         else:
             return NoneLinuxMethod.__doc__
-
+    
+    @final
     @classmethod
     def ShowNetworkInfo(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -249,7 +261,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-
+    
+    @final
     @classmethod
     def ShowSavedNetworks(cls : Type[Self] , show : bool = False) -> str:
         """_summary_
@@ -280,7 +293,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return AdminPermissionRequestDenied.__doc__
-        
+    
+    @final
     @classmethod
     def ShowSavedNetworkWithPassword(cls : Type[Self] , show : bool = False , network_name : str = '') -> str:
         """_summary_
@@ -312,7 +326,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return AdminPermissionRequestDenied.__doc__
-
+    
+    @final
     @classmethod
     def TestConnection(cls : Type[Self] , show : bool = False , timeout : int = 5):
         """_summary_
@@ -343,7 +358,8 @@ class NetworkTools(NetworkUtils):
                 return UnrecognizeableTypeArgument.__doc__
         else:
             return NoneTypeArgumentBool.__doc__
-
+    
+    @final
     @classmethod
     def StatusCodeChecker(cls : Type[Self] , show : bool = False , link : str = ''):
         """_summary_

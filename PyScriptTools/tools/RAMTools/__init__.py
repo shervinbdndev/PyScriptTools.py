@@ -24,7 +24,7 @@
 
     RAMTools
     ========
-    version : 4.3.12\n
+    version : 4.3.13\n
     author : Shervin Badanara\n
     author github : https://www.github.com/shervinbdndev/\n
     source github : https://www.github.com/shervinbdndev/PyScriptTools.py/
@@ -33,8 +33,7 @@
 
 
 try:
-    import psutil
-    from typing import Type
+    from typing import (Type , final)
     from typing_extensions import Self
     
     from ...validators import *
@@ -46,6 +45,10 @@ except ModuleNotFoundError.__doc__ as mnfe:
 
 
 class RAMTools(RAMUtils):
+    
+    def __repr__(self : Self) -> Self:
+        super(RAMTools , self).__repr__()
+        return 'RAMTools Class in PyScriptTools Library'
     
     @classmethod
     def ShowTotalRAM(cls : Type[Self] , show : bool = False) -> float:
